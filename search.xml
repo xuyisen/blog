@@ -24,13 +24,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="/README.html"/>
-      <url>/README.html</url>
-      <content type="html"><![CDATA[<h3 id="许宜森的个人博客"><a href="#许宜森的个人博客" class="headerlink" title="许宜森的个人博客"></a>许宜森的个人博客</h3><blockquote><p>采用 ‘hexo’ 和 ‘nexT’ 主题 进行构建<br>网址为：<a href="https://daixinyuxuyisen.cn/">https://daixinyuxuyisen.cn/</a></p></blockquote>]]></content>
-    </entry>
-    
-    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
