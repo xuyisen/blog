@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/01/software-review/</loc>
+    
+    <lastmod>2018-06-06T06:54:24.164Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://daixinyuxuyisen.cn/categories/index.html</loc>
     
     <lastmod>2018-06-06T06:30:08.536Z</lastmod>
@@ -9,23 +16,9 @@
   </url>
   
   <url>
-    <loc>http://daixinyuxuyisen.cn/2018/06/01/software-review/</loc>
-    
-    <lastmod>2018-06-01T02:46:52.388Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://daixinyuxuyisen.cn/tags/index.html</loc>
     
     <lastmod>2018-05-31T05:14:48.677Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://daixinyuxuyisen.cn/2018/05/31/hello-world/</loc>
-    
-    <lastmod>2018-05-31T03:39:21.680Z</lastmod>
     
   </url>
   
