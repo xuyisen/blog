@@ -1,49 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>test</title>
-      <link href="/2018/06/06/test/"/>
-      <url>/2018/06/06/test/</url>
-      <content type="html"><![CDATA[<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3>]]></content>
-      
+<search>
+  <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2018%2F06%2F06%2Ftest%2F</url>
+    <content type="text"><![CDATA[Please enter the password to read. U2FsdGVkX19qK8/gLCC/2z5cSLzjmsoPuIno4A3HUv9QOn63zHHMUKrfVjSKuinrEVl65zcj4oLhZymO7sKArzFvBP8sl8QK8fOok8kwaEcOJSmEu9dRPUx4TpQ6ioJWUrafh4IfSApfE/vcShow2BBNIse50n/FNgzf4XLOLUTXRbX8xNZ6TE1OiLhBfvocwyWs99ZX66TnXNQ7p//VGYqfLcYfGjmSLW98ut+garWn5uR5sJ0X1Hncuu0VMncX]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 机器学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>软件工程复习提纲</title>
-      <link href="/2018/06/01/software-review/"/>
-      <url>/2018/06/01/software-review/</url>
-      <content type="html"><![CDATA[<p>本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理</p><h3 id="软件工程简述"><a href="#软件工程简述" class="headerlink" title="软件工程简述"></a>软件工程简述</h3><ul><li>软件工程定义：<ul><li>软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法</li><li>去开发和维护软件，</li><li>以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来</li></ul></li></ul>]]></content>
-      
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[软件工程复习提纲]]></title>
+    <url>%2F2018%2F06%2F01%2Fsoftware-review%2F</url>
+    <content type="text"><![CDATA[本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理 软件工程简述 软件工程定义： 软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法 去开发和维护软件， 以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来]]></content>
       <categories>
-          
-          <category> 学科复习 </category>
-          
+        <category>学科复习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 软件工程 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>软件工程</tag>
+      </tags>
+  </entry>
 </search>
