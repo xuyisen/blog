@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/06/daily1/</loc>
+    <lastmod>2018-06-06T12:20:44.541Z</lastmod>
+    <data>
+        <display>
+        <title>日记</title>
+        <pubTime>2018-06-06T12:01:21.000Z</pubTime>
+        
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="日记" url="http://daixinyuxuyisen.cn/categories/%E6%97%A5%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://daixinyuxuyisen.cn/2018/06/01/software-review/</loc>
     <lastmod>2018-06-06T11:07:32.960Z</lastmod>
     <data>
@@ -23,25 +43,5 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://daixinyuxuyisen.cn/2018/06/06/test/</loc>
-    <lastmod>2018-06-06T08:23:03.834Z</lastmod>
-    <data>
-        <display>
-        <title>test</title>
-        <pubTime>2018-06-06T08:21:14.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习" url="http://daixinyuxuyisen.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
 </urlset>
