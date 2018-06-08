@@ -115,16 +115,29 @@
 
 
 
-  <meta name="description" content="略略略">
-<meta property="og:type" content="website">
-<meta property="og:title" content="许宜森的个人博客">
-<meta property="og:url" content="http://daixinyuxuyisen.cn/archives/index.html">
+  <meta name="description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
+<meta name="keywords" content="AST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AST">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/08/AST/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="略略略">
+<meta property="og:description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5cab0871e.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5fb82699e.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a6012ac69a.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a604443ddf.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a609ceb152.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png">
+<meta property="og:updated_time" content="2018-06-08T10:58:05.341Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="许宜森的个人博客">
-<meta name="twitter:description" content="略略略">
+<meta name="twitter:title" content="AST">
+<meta name="twitter:description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
+<meta name="twitter:image" content="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png">
 
 
 
@@ -133,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://daixinyuxuyisen.cn/archives/"/>
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/06/08/AST/"/>
 
 
 
@@ -143,7 +156,7 @@
   };
 </script>
 
-  <title>归档 | 许宜森的个人博客</title>
+  <title>AST | 许宜森的个人博客</title>
   
 
 
@@ -190,7 +203,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/xuyisen" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,7 +252,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
@@ -351,189 +364,274 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/06/08/AST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="许宜森">
+      <meta itemprop="description" content="略略略">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="许宜森的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">AST
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 09:42:52 / 修改时间：18:58:05" itemprop="dateCreated datePublished" datetime="2018-06-08T09:42:52+08:00">2018-06-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 3 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/08/AST/" itemprop="url">
-              
-                <span itemprop="name">AST</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-08T09:42:52+08:00"
-              content="2018-06-08" >
-          06-08
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/06/daily1/" itemprop="url">
-              
-                <span itemprop="name">日记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-06T20:01:21+08:00"
-              content="2018-06-06" >
-          06-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/01/software-review/" itemprop="url">
-              
-                <span itemprop="name">软件工程复习提纲</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-01T10:10:54+08:00"
-              content="2018-06-01" >
-          06-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h3 id="Scala-AST-叶子节点提取"><a href="#Scala-AST-叶子节点提取" class="headerlink" title="Scala AST 叶子节点提取"></a>Scala AST 叶子节点提取</h3><ul>
+<li>背景：<ul>
+<li>前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取</li>
+<li>Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科）</li>
+</ul>
+</li>
+<li>实验步骤：<ul>
+<li>使用的工具：<ul>
+<li>scala meta : <a href="https://scalameta.org/" target="_blank" rel="noopener">https://scalameta.org/</a></li>
+<li>Intellij Idea: <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">https://www.jetbrains.com/idea/</a></li>
+</ul>
+</li>
+<li>借助的参考资料：<ul>
+<li>scala meta的示例程序</li>
+<li>浏览器 构造 scala AST 树：<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a></li>
+</ul>
+</li>
+<li>实验带代码：<br>  查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性：<img src="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png" alt="图片描述"><br>  所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个：<br>  <img src="https://i.loli.net/2018/06/08/5b1a5cab0871e.png" alt="图片描述"><br>  分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找：<img src="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png" alt="标题"><br>  也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。</li>
+<li>代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：</a><br><img src="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png" alt="图片描述">基本数据类型<br><img src="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png" alt="图片描述">Term.Name处<img src="https://i.loli.net/2018/06/08/5b1a5fb82699e.png" alt="图片描述">Type.Name 处</li>
+</ul>
+</li>
+<li>实验的最终结果：<ul>
+<li><img src="https://i.loli.net/2018/06/08/5b1a6012ac69a.png" alt="图片描述">Scala 源代码</li>
+<li><img src="https://i.loli.net/2018/06/08/5b1a604443ddf.png" alt="图片描述"> 提取的叶子节点</li>
+<li><img src="https://i.loli.net/2018/06/08/5b1a609ceb152.png" alt="图片描述"> 源代码</li>
+<li><img src="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png" alt="图片描述"> 提取的叶子节点</li>
+</ul>
+</li>
+<li>总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成<string>等基本数据的转化还未加入。</string></li>
+</ul>
+<p>本博客持续更新。</p>
 
       
-
     </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/06/08/AST/">AST</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
+  <p><span>发布时间:</span>2018年06月08日 - 09:06</p>
+  <p><span>最后更新:</span>2018年06月08日 - 18:06</p>
+  <p><span>原始链接:</span><a href="/2018/06/08/AST/" title="AST">http://daixinyuxuyisen.cn/2018/06/08/AST/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/08/AST/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+    </div>
+    
+    
+    <div>
+    
+      <div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读!-------------</div>
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AST/" rel="tag">AST</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/daily1/" rel="next" title="日记">
+                <i class="fa fa-chevron-left"></i> 日记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzA4My8xMzYxOQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -554,8 +652,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -669,6 +776,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-AST-叶子节点提取"><span class="nav-number">1.</span> <span class="nav-text">Scala AST 叶子节点提取</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -822,6 +945,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
@@ -846,6 +973,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
