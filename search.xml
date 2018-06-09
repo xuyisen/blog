@@ -1,70 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>AST</title>
-      <link href="/2018/06/08/AST/"/>
-      <url>/2018/06/08/AST/</url>
-      <content type="html"><![CDATA[<h3 id="Scala-AST-叶子节点提取"><a href="#Scala-AST-叶子节点提取" class="headerlink" title="Scala AST 叶子节点提取"></a>Scala AST 叶子节点提取</h3><ul><li>背景：<ul><li>前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取</li><li>Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科）</li></ul></li><li>实验步骤：<ul><li>使用的工具：<ul><li>scala meta : <a href="https://scalameta.org/" target="_blank" rel="noopener">https://scalameta.org/</a></li><li>Intellij Idea: <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">https://www.jetbrains.com/idea/</a></li></ul></li><li>借助的参考资料：<ul><li>scala meta的示例程序</li><li>浏览器 构造 scala AST 树：<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a></li></ul></li><li>实验带代码：<br>  查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性：<img src="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png" alt="图片描述"><br>  所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个：<br>  <img src="https://i.loli.net/2018/06/08/5b1a5cab0871e.png" alt="图片描述"><br>  分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找：<img src="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png" alt="标题"><br>  也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。</li><li>代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：</a><br><img src="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png" alt="图片描述">基本数据类型<br><img src="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png" alt="图片描述">Term.Name处<img src="https://i.loli.net/2018/06/08/5b1a5fb82699e.png" alt="图片描述">Type.Name 处</li></ul></li><li>实验的最终结果：<ul><li><img src="https://i.loli.net/2018/06/08/5b1a6012ac69a.png" alt="图片描述">Scala 源代码</li><li><img src="https://i.loli.net/2018/06/08/5b1a604443ddf.png" alt="图片描述"> 提取的叶子节点</li><li><img src="https://i.loli.net/2018/06/08/5b1a609ceb152.png" alt="图片描述"> 源代码</li><li><img src="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png" alt="图片描述"> 提取的叶子节点</li></ul></li><li>总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成<string>等基本数据的转化还未加入。</string></li></ul><p>本博客持续更新。</p>]]></content>
-      
+<search>
+  <entry>
+    <title><![CDATA[AST树提取进展]]></title>
+    <url>%2F2018%2F06%2F09%2Fexperment1%2F</url>
+    <content type="text"><![CDATA[##今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据 实验步骤： 按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办法。经过不懈的努力，最终在评论区找到了解决方法，这个bug主要是s&quot;xxxxxxx&quot;后面直接换行引起的(黑人问号)，只要在\n后面加一个空格就可以了(黑人问号)。 所以我就对我们输入的数据进行了预处理，所有包含字符串s&quot;xxxxx&quot;的行的\n都进行了变换。 第二个问题，嵌套函数的问题，因为我们测试的数据是在方法级别上的进行抽取，所以就会出现嵌套函数的问题，具体的嵌套函数的示例如下图所示： 在这里的问题主要是将子函数抽取出来作为一条数据还是将子函数作为一条像if语句那样的句子作为父函数的一部分，经过跟几位老师讨论，我们决定采用第一种方式，原因是第一子函数的粒度小，第二就是在函数的功能上面还是子函数为主，对于第四种类型的代码克隆的判断来说更加有利。所以我利用栈的思想将子函数剥离出来：最终的结果是： 其中13是父函数，12是子函数。 最终结果： 成功提取spark代码里面的27042条样本，明天开始进行测试算法效果，并且再读一遍论文，整理一下文档加油！！！！ 还要好好学一下英语和线代和算法！！！]]></content>
       <categories>
-          
-          <category> Scala </category>
-          
+        <category>Scala</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> AST </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>日记</title>
-      <link href="/2018/06/06/daily1/"/>
-      <url>/2018/06/06/daily1/</url>
-      <content type="html"><![CDATA[<script src="/crypto-js.js"></script><script src="/mcommon.js"></script><h3 id="encrypt-message">Please enter the password to read.</h3><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" password " /> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>]]></content>
-      
+      <tags>
+        <tag>AST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AST]]></title>
+    <url>%2F2018%2F06%2F08%2FAST%2F</url>
+    <content type="text"><![CDATA[Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科） 实验步骤： 使用的工具： scala meta : https://scalameta.org/ Intellij Idea: https://www.jetbrains.com/idea/ 借助的参考资料： scala meta的示例程序 浏览器 构造 scala AST 树：https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7 实验带代码： 查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性： 所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个： 分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找： 也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。 代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：基本数据类型Term.Name处Type.Name 处 实验的最终结果： Scala 源代码 提取的叶子节点 源代码 提取的叶子节点 总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成等基本数据的转化还未加入。 本博客持续更新。]]></content>
       <categories>
-          
-          <category> 日记 </category>
-          
+        <category>Scala</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 日记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>软件工程复习提纲</title>
-      <link href="/2018/06/01/software-review/"/>
-      <url>/2018/06/01/software-review/</url>
-      <content type="html"><![CDATA[<p>本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理</p><h3 id="软件工程简述"><a href="#软件工程简述" class="headerlink" title="软件工程简述"></a>软件工程简述</h3><ul><li>软件工程定义：<ul><li>软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法</li><li>去开发和维护软件，</li><li>以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来</li></ul></li></ul>]]></content>
-      
+      <tags>
+        <tag>AST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日记]]></title>
+    <url>%2F2018%2F06%2F06%2Fdaily1%2F</url>
+    <content type="text"><![CDATA[Please enter the password to read. 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]]></content>
       <categories>
-          
-          <category> 学科复习 </category>
-          
+        <category>日记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 软件工程 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[软件工程复习提纲]]></title>
+    <url>%2F2018%2F06%2F01%2Fsoftware-review%2F</url>
+    <content type="text"><![CDATA[本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理 软件工程简述 软件工程定义： 软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法 去开发和维护软件， 以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来]]></content>
+      <categories>
+        <category>学科复习</category>
+      </categories>
+      <tags>
+        <tag>软件工程</tag>
+      </tags>
+  </entry>
 </search>
