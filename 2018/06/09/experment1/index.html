@@ -115,13 +115,13 @@
 
 
 
-  <meta name="description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据 实验步骤： 按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办">
+  <meta name="description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
 <meta name="keywords" content="AST">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AST树提取进展">
 <meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/09/experment1/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据 实验步骤： 按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办">
+<meta property="og:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bcfec946d8.png">
 <meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd122d8519.png">
@@ -131,10 +131,10 @@
 <meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd922794ab.png">
 <meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd8eb96c6d.png">
 <meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd8a286de6.png">
-<meta property="og:updated_time" content="2018-06-09T14:03:05.978Z">
+<meta property="og:updated_time" content="2018-06-09T14:07:14.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AST树提取进展">
-<meta name="twitter:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据 实验步骤： 按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办">
+<meta name="twitter:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
 <meta name="twitter:image" content="https://i.loli.net/2018/06/09/5b1bcfec946d8.png">
 
 
@@ -424,7 +424,7 @@
                 
               
 
-              <time title="创建时间：2018-06-09 20:55:53 / 修改时间：22:03:05" itemprop="dateCreated datePublished" datetime="2018-06-09T20:55:53+08:00">2018-06-09</time>
+              <time title="创建时间：2018-06-09 20:55:53 / 修改时间：22:07:14" itemprop="dateCreated datePublished" datetime="2018-06-09T20:55:53+08:00">2018-06-09</time>
             
 
             
@@ -480,7 +480,8 @@
       
 
       
-        <h2 id="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"><a href="#今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据" class="headerlink" title="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"></a>今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据</h2><ul>
+        <h2 id="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"><a href="#今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据" class="headerlink" title="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"></a>今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据</h2><a id="more"></a>
+<ul>
 <li>实验步骤：<ul>
 <li>按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 <img src="https://i.loli.net/2018/06/09/5b1bcfec946d8.png" alt="图片描述">然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 <img src="https://i.loli.net/2018/06/09/5b1bd122d8519.png" alt="图片描述"><br>在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办法。经过不懈的努力，最终在评论区找到了解决方法，这个bug主要是<code>s&quot;xxxxxxx&quot;</code>后面直接换行引起的(黑人问号)，只要在<code>\n</code>后面加一个空格就可以了(黑人问号)。 <img src="https://i.loli.net/2018/06/09/5b1bd7d5baf20.png" alt="图片描述"><br>所以我就对我们输入的数据进行了预处理，所有包含字符串<code>s&quot;xxxxx&quot;</code>的行的<code>\n</code>都进行了变换。 <img src="https://i.loli.net/2018/06/09/5b1bd828e787a.png" alt="图片描述"></li>
 <li>第二个问题，嵌套函数的问题，因为我们测试的数据是在方法级别上的进行抽取，所以就会出现嵌套函数的问题，具体的嵌套函数的示例如下图所示：    <img src="https://i.loli.net/2018/06/09/5b1bd8cbbc23b.png" alt="图片描述"> 在这里的问题主要是将子函数抽取出来作为一条数据还是将子函数作为一条像if语句那样的句子作为父函数的一部分，经过跟几位老师讨论，我们决定采用第一种方式，原因是第一子函数的粒度小，第二就是在函数的功能上面还是子函数为主，对于第四种类型的代码克隆的判断来说更加有利。所以我利用栈的思想将子函数剥离出来：<img src="https://i.loli.net/2018/06/09/5b1bd922794ab.png" alt="图片描述"><br>最终的结果是：    <img src="https://i.loli.net/2018/06/09/5b1bd8eb96c6d.png" alt="图片描述"><br>其中13是父函数，12是子函数。</li>
