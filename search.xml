@@ -1,58 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[简单代码克隆检测]]></title>
-    <url>%2F2018%2F06%2F10%2Fexperment2%2F</url>
-    <content type="text"><![CDATA[今天主要将昨天得到的数据，放到之前看到的模型中跑了一下，看了一下效果，简单叙述一下实验。 实验思路： 将提取的Scala叶子节点的特征作为文本数据，输入到AutoenCODE中 ：AutoenCODE is a Deep Learning infrastructure that allows to encode source code fragments into vector representations, which can be used to learn similarities. https://github.com/micheletufano/AutoenCODE基本上所有的代码这个网站已经提供了，所以只要将代码clone到本地，配置一下环境就可以开始我们的实验。具体的AutoenCODE的原理，我会在以后的博客中详细的解释，本篇博客主要讲如何使用这个框架。 实验步骤： 按照AutoenCODE给的教程，第一步是将我们整理的数据转化成词向量，这里他使用的工具是word2vec，这里注意一下，他的这个word2vec需要build但是windows系统不支持这个build，所以我将转化词向量的这部分的工作转移到了centos服务器上进行，最终得到了测试样本的所有的词向量的数据。 接下来就将这个词向量输入到Recursive Autoencoder(论文中提及是一个斯坦福的情感分析器)中去，最终得到五个结果文件(这里提及一点，训练时间实在是太长了，源代码是使用matlab写的。27000条数据整整跑了一个小时，而且CUP满负荷运行，可能是我的电脑配置低，之后需要优化)。分别是： data.mat contains the input data including the corpus, vocabulary (a 1-by-|V| cell array), and We (the m-by-|V| word embedding matrix where m is the size of the word vectors). So columns of We correspond to word embeddings. corpus.dist.matrix.mat contains the distance matrix saved as matlab file. The values in the distance matrix are doubles that represent the Euclidean distance between two sentences. In particular, the cell (i,j) contains the Euclidean distance between the i-th sentence (i.e., i-th line in corpus.src) and the j-th sentence in the corpus. corpus.dist.matrix.csv contains the distance matrix saved as .csv file. corpus.sentence_codes.mat contain the embeddings for each sentence in the corpus. The sentence_codes object contains the representations for sentences, and the pairwise Euclidean distance between these representations are used to measure similarity. detector.mat contains opttheta (the trained clone detector), hparams, and options. 这里对我们最有用的就是那个矩阵，它显示两句话的距离大小，越小越相似。那么大的矩阵，怎么进行分析！！，只能硬着头皮通过写matlab代码，将矩阵中每行的最小值（非零）提取出来，这样就能得到27000多个最小值，然后再通过这27000个最小值进行筛选，因为本次实验主要看一下效果所以没有注意到那么多的细节，先把最小值求出来先看看。然后我将最小值又进行了划分，论文中说他们的想法是如果距离小于1e-8就认为他们是克隆的代码，然后我以这个为分界线进行了筛选，发现只有5对符合要求，最终的结果在最终结果那里进行展示。求取最小值代码： 实验结果： 当判断距离为1e-8时(5对) 当判断距离为1e-4时(75对) 当判断距离为1e-2时(800多对)通过观察主要分为以下几个类型： 函数重载和相似函数(在同一个文件中)(5对)(800多对)(75对)(75对)D:\Git\spark\core\src\test\scala\org\apache\spark\deploy\master\MasterSuite.scalaD:\Git\spark\core\src\test\scala\org\apache\spark\deploy\master\MasterSuite.scala(75对) 父子继承关系或者同时继承同一个父类的子类之间(不同文件)D:\Git\spark\core\src\main\scala\org\apache\spark\scheduler\DAGScheduler.scala (父类)D:\Git\spark\core\src\test\scala\org\apache\spark\scheduler\TaskSetManagerSuite.scala (子类)(75对)D:\Git\spark\core\src\test\scala\org\apache\spark\scheduler\SparkListenerWithClusterSuite.scalaD:\Git\spark\core\src\test\scala\org\apache\spark\deploy\LogUrlsStandaloneSuite.scala(800对) 相似或者相同的函数(不同文件)D:\Git\spark\core\src\main\scala\org\apache\spark\util\collection\PrimitiveKeyOpenHashMap.scalaD:\Git\spark\graphx\src\main\scala\org\apache\spark\graphx\util\collection\GraphXPrimitiveKeyOpenHashMap.scala(75对)D:\Git\spark\core\src\main\scala\org\apache\spark\deploy\history\HistoryServerArguments.scalaD:\Git\spark\core\src\main\scala\org\apache\spark\deploy\worker\WorkerArguments.scala(75对) 不像是克隆的函数(我的观点)D:\Git\spark\core\src\main\scala\org\apache\spark\status\LiveEntity.scalaD:\Git\spark\core\src\main\scala\org\apache\spark\status\LiveEntity.scala(75对) 实验总结： 由于时间和人手有限，现在只是对这几个结果进行了分析，还有很多对都没有看，之后找时间看看还有没有其他类型，或者老师可以分配几个人帮我看看。 附录： 在得到结果以后，这是忘了如何去找源文件，这里我在原来的parse的基础上加上了一个统计样本所在的文件的文件，通过行数来查找对应的文件，感觉很费时费力。]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>简单代码克隆检测</title>
+      <link href="/2018/06/10/experment2/"/>
+      <url>/2018/06/10/experment2/</url>
+      <content type="html"><![CDATA[<h3 id="今天主要将昨天得到的数据，放到之前看到的模型中跑了一下，看了一下效果，简单叙述一下实验。"><a href="#今天主要将昨天得到的数据，放到之前看到的模型中跑了一下，看了一下效果，简单叙述一下实验。" class="headerlink" title="今天主要将昨天得到的数据，放到之前看到的模型中跑了一下，看了一下效果，简单叙述一下实验。"></a>今天主要将昨天得到的数据，放到之前看到的模型中跑了一下，看了一下效果，简单叙述一下实验。<a id="more"></a></h3><ul><li>实验思路：<ul><li>将提取的Scala叶子节点的特征作为文本数据，输入到<code>AutoenCODE</code>中 ：AutoenCODE is a Deep Learning infrastructure that allows to encode source code fragments into vector representations, which can be used to learn similarities. <a href="https://github.com/micheletufano/AutoenCODE" target="_blank" rel="noopener">https://github.com/micheletufano/AutoenCODE</a><br>基本上所有的代码这个网站已经提供了，所以只要将代码clone到本地，配置一下环境就可以开始我们的实验。具体的AutoenCODE的原理，我会在以后的博客中详细的解释，本篇博客主要讲如何使用这个框架。</li></ul></li><li><p>实验步骤：</p><ul><li>按照<code>AutoenCODE</code>给的教程，第一步是将我们整理的数据转化成词向量，这里他使用的工具是word2vec，这里注意一下，他的这个word2vec需要build但是windows系统不支持这个build，所以我将转化词向量的这部分的工作转移到了centos服务器上进行，最终得到了测试样本的所有的词向量的数据。</li><li><p>接下来就将这个词向量输入到<code>Recursive Autoencoder</code>(论文中提及是一个斯坦福的情感分析器)中去，最终得到五个结果文件(这里提及一点，训练时间实在是太长了，源代码是使用matlab写的。27000条数据整整跑了一个小时，而且CUP满负荷运行，可能是我的电脑配置低，之后需要优化)。分别是：</p><ul><li><code>data.mat</code> contains the input data including the corpus, vocabulary (a 1-by-|V| cell array), and We (the m-by-|V| word embedding matrix where m is the size of the word vectors). So columns of We correspond to word embeddings.</li><li><code>corpus.dist.matrix.mat</code> contains the distance matrix saved as matlab file. The values in the distance matrix are doubles that represent the Euclidean distance between two sentences. In particular, the cell (i,j) contains the Euclidean distance between the i-th sentence (i.e., i-th line in corpus.src) and the j-th sentence in the corpus.</li><li><code>corpus.dist.matrix.csv</code> contains the distance matrix saved as .csv file.</li><li><code>corpus.sentence_codes.mat</code> contain the embeddings for each sentence in the corpus. The sentence_codes object contains the representations for sentences, and the pairwise Euclidean distance between these representations are used to measure similarity.</li><li><code>detector.mat</code> contains opttheta (the trained clone detector), hparams, and options.   </li></ul><p>这里对我们最有用的就是那个矩阵，它显示两句话的距离大小，越小越相似。<br><img src="https://i.loli.net/2018/06/10/5b1cfe2b76237.png" alt="图片描述"><br>那么大的矩阵，怎么进行分析！！，只能硬着头皮通过写matlab代码，将矩阵中每行的最小值（非零）提取出来，这样就能得到27000多个最小值，然后再通过这27000个最小值进行筛选，因为本次实验主要看一下效果所以没有注意到那么多的细节，先把最小值求出来先看看。<br>然后我将最小值又进行了划分，论文中说他们的想法是如果距离小于<code>1e-8</code>就认为他们是克隆的代码，然后我以这个为分界线进行了筛选，发现只有5对符合要求，最终的结果在最终结果那里进行展示。求取最小值代码：<br><img src="https://i.loli.net/2018/06/10/5b1cffc14224f.png" alt="图片描述">  </p></li></ul></li><li><p>实验结果：</p><ul><li>当判断距离为1e-8时(5对) </li><li>当判断距离为1e-4时(75对)</li><li>当判断距离为1e-2时(800多对)<br>通过观察主要分为以下几个类型：  <ul><li>函数重载和相似函数(在同一个文件中)<br><img src="https://i.loli.net/2018/06/10/5b1cf6dcac4d4.png" alt="图片描述"><br>(5对)<br><img src="https://i.loli.net/2018/06/10/5b1cf8dac24e9.png" alt="图片描述"><br>(800多对)<br><img src="https://i.loli.net/2018/06/10/5b1cf73260cd5.png" alt="图片描述"><br>(75对)<br><img src="https://i.loli.net/2018/06/10/5b1cf808e710b.png" alt="图片描述"><br><img src="https://i.loli.net/2018/06/10/5b1cf821d17bc.png" alt="图片描述"><br>(75对)<br>D:\Git\spark\core\src\test\scala\org\apache\spark\deploy\master\MasterSuite.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf8420d854.png" alt="图片描述"><br>D:\Git\spark\core\src\test\scala\org\apache\spark\deploy\master\MasterSuite.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf859f2b3b.png" alt="图片描述"><br>(75对)  </li><li>父子继承关系或者同时继承同一个父类的子类之间(不同文件)<br>D:\Git\spark\core\src\main\scala\org\apache\spark\scheduler\DAGScheduler.scala  (父类)<br><img src="https://i.loli.net/2018/06/10/5b1cf8c23604c.png" alt="图片描述"><br>D:\Git\spark\core\src\test\scala\org\apache\spark\scheduler\TaskSetManagerSuite.scala (子类)<br><img src="https://i.loli.net/2018/06/10/5b1cf8ae30b8c.png" alt="图片描述"><br>(75对)<br>D:\Git\spark\core\src\test\scala\org\apache\spark\scheduler\SparkListenerWithClusterSuite.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf883e30b0.png" alt="图片描述"><br>D:\Git\spark\core\src\test\scala\org\apache\spark\deploy\LogUrlsStandaloneSuite.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf8985af35.png" alt="图片描述"><br>(800对)  </li><li>相似或者相同的函数(不同文件)<br>D:\Git\spark\core\src\main\scala\org\apache\spark\util\collection\PrimitiveKeyOpenHashMap.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf6f60d131.png" alt="图片描述"><br>D:\Git\spark\graphx\src\main\scala\org\apache\spark\graphx\util\collection\GraphXPrimitiveKeyOpenHashMap.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf71289bdf.png" alt="图片描述"><br>(75对)<br>D:\Git\spark\core\src\main\scala\org\apache\spark\deploy\history\HistoryServerArguments.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf74b107b6.png" alt="图片描述"><br>D:\Git\spark\core\src\main\scala\org\apache\spark\deploy\worker\WorkerArguments.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf760d148d.png" alt="图片描述"><br>(75对)  </li><li>不像是克隆的函数(我的观点)<br>D:\Git\spark\core\src\main\scala\org\apache\spark\status\LiveEntity.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf7772a91a.png" alt="图片描述"><br>D:\Git\spark\core\src\main\scala\org\apache\spark\status\LiveEntity.scala<br><img src="https://i.loli.net/2018/06/10/5b1cf7c51aa3d.png" alt="图片描述"><br>(75对)</li></ul></li></ul></li><li>实验总结：<br>  由于时间和人手有限，现在只是对这几个结果进行了分析，还有很多对都没有看，之后找时间看看还有没有其他类型，或者老师可以分配几个人帮我看看。</li><li>附录：<br>  在得到结果以后，这是忘了如何去找源文件，这里我在原来的parse的基础上加上了一个统计样本所在的文件的文件，通过<code>行数</code>来查找对应的文件，感觉很费时费力。<br>  <img src="https://i.loli.net/2018/06/10/5b1cf96c01a60.png" alt="图片描述"></li></ul>]]></content>
+      
       <categories>
-        <category>Scala</category>
+          
+          <category> Scala </category>
+          
       </categories>
-      <tags>
-        <tag>code_detection</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[AST树提取进展]]></title>
-    <url>%2F2018%2F06%2F09%2Fexperment1%2F</url>
-    <content type="text"><![CDATA[今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据 实验步骤： 按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办法。经过不懈的努力，最终在评论区找到了解决方法，这个bug主要是s&quot;xxxxxxx&quot;后面直接换行引起的(黑人问号)，只要在\n后面加一个空格就可以了(黑人问号)。 所以我就对我们输入的数据进行了预处理，所有包含字符串s&quot;xxxxx&quot;的行的\n都进行了变换。 第二个问题，嵌套函数的问题，因为我们测试的数据是在方法级别上的进行抽取，所以就会出现嵌套函数的问题，具体的嵌套函数的示例如下图所示： 在这里的问题主要是将子函数抽取出来作为一条数据还是将子函数作为一条像if语句那样的句子作为父函数的一部分，经过跟几位老师讨论，我们决定采用第一种方式，原因是第一子函数的粒度小，第二就是在函数的功能上面还是子函数为主，对于第四种类型的代码克隆的判断来说更加有利。所以我利用栈的思想将子函数剥离出来：最终的结果是： 其中13是父函数，12是子函数。 最终结果： 成功提取spark代码里面的27042条样本，明天开始进行测试算法效果，并且再读一遍论文，整理一下文档加油！！！！ 还要好好学一下英语和线代和算法！！！]]></content>
+      
+      
+        <tags>
+            
+            <tag> code_detection </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AST树提取进展</title>
+      <link href="/2018/06/09/experment1/"/>
+      <url>/2018/06/09/experment1/</url>
+      <content type="html"><![CDATA[<h2 id="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"><a href="#今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据" class="headerlink" title="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"></a>今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据</h2><a id="more"></a><ul><li>实验步骤：<ul><li>按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 <img src="https://i.loli.net/2018/06/09/5b1bcfec946d8.png" alt="图片描述">然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 <img src="https://i.loli.net/2018/06/09/5b1bd122d8519.png" alt="图片描述"><br>在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办法。经过不懈的努力，最终在评论区找到了解决方法，这个bug主要是<code>s&quot;xxxxxxx&quot;</code>后面直接换行引起的(黑人问号)，只要在<code>\n</code>后面加一个空格就可以了(黑人问号)。 <img src="https://i.loli.net/2018/06/09/5b1bd7d5baf20.png" alt="图片描述"><br>所以我就对我们输入的数据进行了预处理，所有包含字符串<code>s&quot;xxxxx&quot;</code>的行的<code>\n</code>都进行了变换。 <img src="https://i.loli.net/2018/06/09/5b1bd828e787a.png" alt="图片描述"></li><li>第二个问题，嵌套函数的问题，因为我们测试的数据是在方法级别上的进行抽取，所以就会出现嵌套函数的问题，具体的嵌套函数的示例如下图所示：    <img src="https://i.loli.net/2018/06/09/5b1bd8cbbc23b.png" alt="图片描述"> 在这里的问题主要是将子函数抽取出来作为一条数据还是将子函数作为一条像if语句那样的句子作为父函数的一部分，经过跟几位老师讨论，我们决定采用第一种方式，原因是第一子函数的粒度小，第二就是在函数的功能上面还是子函数为主，对于第四种类型的代码克隆的判断来说更加有利。所以我利用栈的思想将子函数剥离出来：<img src="https://i.loli.net/2018/06/09/5b1bd922794ab.png" alt="图片描述"><br>最终的结果是：    <img src="https://i.loli.net/2018/06/09/5b1bd8eb96c6d.png" alt="图片描述"><br>其中13是父函数，12是子函数。</li></ul></li><li>最终结果：<ul><li>成功提取spark代码里面的27042条样本，明天开始进行测试算法效果，并且再读一遍论文，整理一下文档<br><img src="https://i.loli.net/2018/06/09/5b1bd8a286de6.png" alt="图片描述"><br>加油！！！！  还要好好学一下英语和线代和算法！！！</li></ul></li></ul>]]></content>
+      
       <categories>
-        <category>Scala</category>
+          
+          <category> Scala </category>
+          
       </categories>
-      <tags>
-        <tag>AST</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[AST]]></title>
-    <url>%2F2018%2F06%2F08%2FAST%2F</url>
-    <content type="text"><![CDATA[Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科） 实验步骤： 使用的工具： scala meta : https://scalameta.org/ Intellij Idea: https://www.jetbrains.com/idea/ 借助的参考资料： scala meta的示例程序 浏览器 构造 scala AST 树：https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7 实验带代码： 查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性： 所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个： 分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找： 也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。 代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7发现：叶子节点主要在以下几个地方打印：基本数据类型Term.Name处Type.Name 处还有一个是Name处 实验的最终结果： Scala 源代码 提取的叶子节点 源代码 提取的叶子节点 总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成等基本数据的转化还未加入。 本博客持续更新。]]></content>
+      
+      
+        <tags>
+            
+            <tag> AST </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AST</title>
+      <link href="/2018/06/08/AST/"/>
+      <url>/2018/06/08/AST/</url>
+      <content type="html"><![CDATA[<h3 id="Scala-AST-叶子节点提取"><a href="#Scala-AST-叶子节点提取" class="headerlink" title="Scala AST 叶子节点提取"></a>Scala AST 叶子节点提取</h3><ul><li>背景：<ul><li>前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取</li><li>Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科）<a id="more"></a></li></ul></li><li>实验步骤：<ul><li>使用的工具：<ul><li>scala meta : <a href="https://scalameta.org/" target="_blank" rel="noopener">https://scalameta.org/</a></li><li>Intellij Idea: <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">https://www.jetbrains.com/idea/</a></li></ul></li><li>借助的参考资料：<ul><li>scala meta的示例程序</li><li>浏览器 构造 scala AST 树：<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a></li></ul></li><li>实验带代码：<br>  查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性：<img src="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png" alt="图片描述"><br>  所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个：<br>  <img src="https://i.loli.net/2018/06/08/5b1a5cab0871e.png" alt="图片描述"><br>  分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找：<img src="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png" alt="标题"><br>  也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。</li><li>代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a><br>发现：叶子节点主要在以下几个地方打印：<br><img src="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png" alt="图片描述">基本数据类型<br><img src="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png" alt="图片描述">Term.Name处<img src="https://i.loli.net/2018/06/08/5b1a5fb82699e.png" alt="图片描述">Type.Name 处<br>还有一个是Name处</li></ul></li><li>实验的最终结果：<ul><li><img src="https://i.loli.net/2018/06/08/5b1a6012ac69a.png" alt="图片描述">Scala 源代码</li><li><img src="https://i.loli.net/2018/06/08/5b1a604443ddf.png" alt="图片描述"> 提取的叶子节点</li><li><img src="https://i.loli.net/2018/06/08/5b1a609ceb152.png" alt="图片描述"> 源代码</li><li><img src="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png" alt="图片描述"> 提取的叶子节点</li></ul></li><li>总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成<string>等基本数据的转化还未加入。</string></li></ul><p>本博客持续更新。</p>]]></content>
+      
       <categories>
-        <category>Scala</category>
+          
+          <category> Scala </category>
+          
       </categories>
-      <tags>
-        <tag>AST</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[日记]]></title>
-    <url>%2F2018%2F06%2F06%2Fdaily1%2F</url>
-    <content type="text"><![CDATA[Please enter the password to read. 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]]></content>
+      
+      
+        <tags>
+            
+            <tag> AST </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>日记</title>
+      <link href="/2018/06/06/daily1/"/>
+      <url>/2018/06/06/daily1/</url>
+      <content type="html"><![CDATA[<script src="/crypto-js.js"></script><script src="/mcommon.js"></script><h3 id="encrypt-message">Please enter the password to read.</h3><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" password " /> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>]]></content>
+      
       <categories>
-        <category>日记</category>
+          
+          <category> 日记 </category>
+          
       </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[软件工程复习提纲]]></title>
-    <url>%2F2018%2F06%2F01%2Fsoftware-review%2F</url>
-    <content type="text"><![CDATA[本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理 软件工程简述 软件工程定义： 软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法 去开发和维护软件， 以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来]]></content>
+      
+      
+        <tags>
+            
+            <tag> 日记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>软件工程复习提纲</title>
+      <link href="/2018/06/01/software-review/"/>
+      <url>/2018/06/01/software-review/</url>
+      <content type="html"><![CDATA[<p>本博客是根据软件工程最后一节重点课总结的内容，对软件工程的知识进行了简单的梳理</p><h3 id="软件工程简述"><a href="#软件工程简述" class="headerlink" title="软件工程简述"></a>软件工程简述</h3><ul><li>软件工程定义：<ul><li>软件工程是研究应用如何以系统性的、规范化的、可定量的过程化方法</li><li>去开发和维护软件，</li><li>以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术结合起来</li></ul></li></ul>]]></content>
+      
       <categories>
-        <category>学科复习</category>
+          
+          <category> 学科复习 </category>
+          
       </categories>
-      <tags>
-        <tag>软件工程</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> 软件工程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
 </search>
