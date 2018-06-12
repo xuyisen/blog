@@ -4,11 +4,31 @@
 
     
   <url>
-    <loc>http://daixinyuxuyisen.cn/2018/06/10/experment2/</loc>
-    <lastmod>2018-06-10T11:16:22.170Z</lastmod>
+    <loc>http://daixinyuxuyisen.cn/2018/06/12/experment3/</loc>
+    <lastmod>2018-06-12T11:25:54.920Z</lastmod>
     <data>
         <display>
-        <title>简单代码克隆检测</title>
+        <title>简单代码克隆检测二(AST node)</title>
+        <pubTime>2018-06-12T08:49:10.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/10/experment2/</loc>
+    <lastmod>2018-06-12T08:51:36.426Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测一(AST leaf)</title>
         <pubTime>2018-06-10T09:56:28.000Z</pubTime>
         
         <tag>code_detection</tag>
