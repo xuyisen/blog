@@ -115,32 +115,18 @@
 
 
 
-  <meta name="description" content="今天主要将论文中所说第二个特征 AST 节点类型提取出来，然后输入到模型中进行了验证">
+  <meta name="description" content="the content has been encrypted, enter the password to read.">
 <meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单代码克隆检测二(AST node)">
 <meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/12/experment3/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="今天主要将论文中所说第二个特征 AST 节点类型提取出来，然后输入到模型中进行了验证">
+<meta property="og:description" content="the content has been encrypted, enter the password to read.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/1.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/2.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/3.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/4.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/6.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/5.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/7.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/8.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/9.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/10.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/11.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/12.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/13.png">
-<meta property="og:updated_time" content="2018-06-12T11:25:54.920Z">
+<meta property="og:updated_time" content="2018-06-17T18:49:48.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单代码克隆检测二(AST node)">
-<meta name="twitter:description" content="今天主要将论文中所说第二个特征 AST 节点类型提取出来，然后输入到模型中进行了验证">
-<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/1.png">
+<meta name="twitter:description" content="the content has been encrypted, enter the password to read.">
 
 
 
@@ -429,12 +415,24 @@
                 
               
 
-              <time title="创建时间：2018-06-12 16:49:10 / 修改时间：19:25:54" itemprop="dateCreated datePublished" datetime="2018-06-12T16:49:10+08:00">2018-06-12</time>
+              <time title="创建时间：2018-06-12 16:49:10" itemprop="dateCreated datePublished" datetime="2018-06-12T16:49:10+08:00">2018-06-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-18 02:49:48" itemprop="dateModified" datetime="2018-06-18T02:49:48+08:00">2018-06-18</time>
               
             
           </span>
@@ -485,40 +483,7 @@
       
 
       
-        <h3 id="今天主要将论文中所说第二个特征-AST-节点类型提取出来，然后输入到模型中进行了验证"><a href="#今天主要将论文中所说第二个特征-AST-节点类型提取出来，然后输入到模型中进行了验证" class="headerlink" title="今天主要将论文中所说第二个特征 AST 节点类型提取出来，然后输入到模型中进行了验证"></a>今天主要将论文中所说第二个特征 <code>AST</code> 节点类型提取出来，然后输入到模型中进行了验证</h3><a id="more"></a>    
-<ul>
-<li>实验思路： <ul>
-<li>按照论文的思想，第二特征主要用一个<code>high level</code>的特征来体现代码，这个特征就是用 <code>AST</code>节点的类型来表示，比如：<code>Defn.def</code>是方法的类型，<code>Term.for</code>是for语句的类型等等这些，其主要的目的就是让我们处理的方法更加抽象，解决变量名改变(第二种类型clone)克隆方面有着很好的效果。在提取数据的时候作者做了一点小的改变，并没有将所有的节点的类型都作为特征，而是除去了<code>SimpleName</code>,<code>QualifiedName</code>(java)两个类型的节点,相应的我将Scala语言中的<code>Term.Name</code>,<code>Type.Name</code>两个节点的类型也进行了忽略，这样做的主要原因是，第一，这两个节点已经属于较低层次的特征，会与我们之前提取的第一个(identifiers)特征重复,第二是，两节点的数量很多，在java中有将近46%的节点类型在这两个类型之间，所以就直接将这两个节点直接去掉。</li>
-<li>数据提取完以后就按照之前的做法输入到AutoenCODE中去进行训练，观察效果，并与第一次实验做了一下对比。</li>
-</ul>
-</li>
-<li>实验步骤：<ul>
-<li>提取<code>AST</code>节点类型,只要在非叶子节点的visitor中加入相应的统计的代码即可。<br><img src="/images/1.png" alt="图片描述"><br>最终得到的数据的结果如图所示：<br><img src="/images/2.png" alt="图片描述">    </li>
-<li>对提取的数据进行 <code>wordembeddings</code> ,产生相应的词向量：<br><img src="/images/3.png" alt="图片描述">   </li>
-<li>将词向量输入到AutoenCODE模型中进行训练，最终得到距离矩阵：<br><img src="/images/4.png" alt="图片描述">  </li>
-<li>对距离矩阵进行统计，上次实验中只是统计了没行中非零的最小值，所以数据量很小，这次我遍历了整个矩阵，求出距离小于<code>1e-16</code>(上次实验说错了，<code>1e-8</code>是对类级的clone进行判断，这个其实是根据不同的项目来设置不同的值，这里我们暂且先按照论文中的数据俩进行实验)的所有clone对的行数，然后依次找出相应的代码进行比较，与上次的实验结果进行比较。</li>
-</ul>
-</li>
-<li><p>实验结果：</p>
-<ul>
-<li>对于第一次实验，我前面已经说过了，统计的阈值设置成<code>1e-16</code>并且统计所有的数据发现一共有大概有2万条数据，也就是有大概2万对克隆对是通过第一个特征发现的，具体是不是克隆对需要后期人工进行处理，工作十分艰巨。<br>提取克隆对的代码：<br><img src="/images/6.png" alt="图片描述"><br>结果：<br><img src="/images/5.png" alt="图片描述"><br>通过赵俐俐学姐目前的统计的数据来看，这两万条数据中的克隆对是完全一模一样，属于判断是否为clone的第一种类型。例子：<br>D:\Git\spark\core\src\main\scala\org\apache\spark\Accumulable.scala<br><img src="/images/7.png" alt="图片描述"><br>D:\Git\spark\core\src\main\scala\org\apache\spark\util\AccumulatorV2.scala <img src="/images/8.png" alt="图片描述"> </li>
-<li>第二次实验得到的结果更让我吃惊，大概有30w克隆对：<br><img src="/images/9.png" alt="图片描述"><br>对这30w数据进行简单的分析：  <ul>
-<li>第一个特征里面的数据基本上都包含在内  </li>
-<li>其次是一些变量名不同，但具有相同结构的函数被识别出来了：<br>D:\Git\spark\core\src\main\scala\org\apache\spark\Accumulable.scala<br><img src="/images/10.png" alt="图片描述"> </li>
-<li><em>但是其中大多数的数据都是一些判断错误的数据</em>，我对这些数据进行了简单的观察，发现他们有一个特点，就是样本数据短小，往往就几个简单的语句：<br><img src="/images/11.png" alt="图片描述"><br>而数据量小，就会导致很多差别很大的函数被误判为代码 clone:<br><img src="/images/12.png" alt="图片描述"><br>而一些代码很长的判断则更像是代码克隆：<br>D:\Git\spark\core\src\main\scala\org\apache\spark\Aggregator.scala<br><img src="/images/13.png" alt="图片描述"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>下一步工作：  </p>
-<ul>
-<li>与俐俐学姐统计并观察得到的clone对(第一个特征）</li>
-<li>询问并查找如何去除第二种类型的过多的错误数据  </li>
-</ul>
-</li>
-</ul>
-<p>加油！！！</p>
-
+        <script src="/crypto-js.js"></script><script src="/mcommon.js"></script><h3 id="encrypt-message">Please enter the password to read.</h3><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" password " /> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>
       
     </div>
 
@@ -540,7 +505,7 @@
   <p><span>本文标题:</span><a href="/2018/06/12/experment3/">简单代码克隆检测二(AST node)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
   <p><span>发布时间:</span>2018年06月12日 - 16:06</p>
-  <p><span>最后更新:</span>2018年06月12日 - 19:06</p>
+  <p><span>最后更新:</span>2018年06月18日 - 02:06</p>
   <p><span>原始链接:</span><a href="/2018/06/12/experment3/" title="简单代码克隆检测二(AST node)">http://daixinyuxuyisen.cn/2018/06/12/experment3/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/12/experment3/"  aria-label="复制成功！"></i></span>
   </p>
@@ -803,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今天主要将论文中所说第二个特征-AST-节点类型提取出来，然后输入到模型中进行了验证"><span class="nav-number">1.</span> <span class="nav-text">今天主要将论文中所说第二个特征 AST 节点类型提取出来，然后输入到模型中进行了验证</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#encrypt-message"><span class="nav-number">1.</span> <span class="nav-text">Please enter the password to read.</span></a></li></ol></div>
             
 
           </div>
@@ -856,7 +821,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共3.7k字</span>
 </div>
 
         

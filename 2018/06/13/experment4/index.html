@@ -115,36 +115,18 @@
 
 
 
-  <meta name="description" content="今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，">
+  <meta name="description" content="the content has been encrypted, enter the password to read.">
 <meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单代码克隆检测(三)(精简数据)">
 <meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/13/experment4/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，">
+<meta property="og:description" content="the content has been encrypted, enter the password to read.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/14.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/15.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/16.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/17.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/18.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/19.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/20.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/21.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/22.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/23.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/24.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/25.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/26.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/27.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/28.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/29.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/30.png">
-<meta property="og:updated_time" content="2018-06-13T13:20:33.419Z">
+<meta property="og:updated_time" content="2018-06-17T18:50:03.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单代码克隆检测(三)(精简数据)">
-<meta name="twitter:description" content="今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，">
-<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/14.png">
+<meta name="twitter:description" content="the content has been encrypted, enter the password to read.">
 
 
 
@@ -433,12 +415,24 @@
                 
               
 
-              <time title="创建时间：2018-06-13 20:36:28 / 修改时间：21:20:33" itemprop="dateCreated datePublished" datetime="2018-06-13T20:36:28+08:00">2018-06-13</time>
+              <time title="创建时间：2018-06-13 20:36:28" itemprop="dateCreated datePublished" datetime="2018-06-13T20:36:28+08:00">2018-06-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-18 02:50:03" itemprop="dateModified" datetime="2018-06-18T02:50:03+08:00">2018-06-18</time>
               
             
           </span>
@@ -489,49 +483,7 @@
       
 
       
-        <h3 id="今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，"><a href="#今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，" class="headerlink" title="今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，"></a>今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，</h3><a id="more"></a>
-<ul>
-<li>实验准备：  <ul>
-<li>昨天老师提及到了一点<code>传统的clone detection一般只考虑长度10行以上的代码片段</code>，恰好scala meta 提供了position属性可以供我们进行筛选，但是scala meta 提供的并不是行数，而是这个方法中有多少的<code>字</code>,下面简单展示几个例子，让我们了解一下方法的具体规模信息：  <ul>
-<li>200 字节：<br><img src="/images/14.png" alt="图片描述">  </li>
-<li>300字节：<br><img src="/images/15.png" alt="图片描述">  </li>
-<li>400字节：<br><img src="/images/16.png" alt="图片描述">  </li>
-<li>500字节：<br><img src="/images/17.png" alt="图片描述">  </li>
-<li>600字节：<br><img src="/images/18.png" alt="图片描述">  </li>
-<li>1000字节：<br><img src="/images/19.png" alt="图片描述"><br>然后我查看了<code>spark</code>的几个<code>scala</code>文件，发现大多数的方法的长度都很小，都在<code>200</code>-<code>300</code>之间，但是为了获取较为大的函数，我选取了<code>500</code>字节作为阈值进行筛选。代码：<br><img src="/images/20.png" alt="图片描述">  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>实验步骤：  <ul>
-<li>首先，提取<code>leaf node</code> 和<code>path node</code>数据，共得到<code>5387</code>条数据：<br><img src="/images/21.png" alt="图片描述">   </li>
-<li>然后分别对<code>leaf node</code>和<code>path node</code>属性进行<code>wordembeddings</code>然后输入到<code>AutoenCODE</code>，(这里提及一下，这个框架里面有几个参数，我在实验的时候并没有进行修改，后续实验的时候需要研究一下，修改超参数观察数据变化。)  </li>
-</ul>
-</li>
-<li>实验结果：  <ul>
-<li><code>leaf node</code>:  <ul>
-<li>距离矩阵：<br><img src="/images/22.png" alt="图片描述">   </li>
-<li>提取的距离小于<code>1e-16</code>的克隆对：<br>总共提取出了114对代码克隆对：<br><img src="/images/23.png" alt="图片描述">   </li>
-<li>例子：<br> D:\Git\spark\core\src\main\scala\org\apache\spark\api\python\PythonRunner.scala<br> <img src="/images/24.png" alt="图片描述"><br> D:\Git\spark\sql\core\src\main\scala\org\apache\spark\sql\execution\python\PythonUDFRunner.scala<br> <img src="/images/25.png" alt="图片描述"> </li>
-</ul>
-</li>
-<li><code>path node</code>:  <ul>
-<li>距离矩阵：<br><img src="/images/26.png" alt="图片描述">   </li>
-<li>提取的距离小于<code>1e-16</code>的克隆对：<br>总共提取出了185对代码克隆对：<br><img src="/images/27.png" alt="图片描述">   </li>
-<li>与<code>leaf node</code> 进行比较，前面我们举的两个例子是 id 为<code>36,4228</code>的例子,我们发现在<code>path node</code>的结果中不仅出现了<code>36,4228</code>的克隆对，还出现了<code>36,4215</code>的克隆对，所以这里只展示id为<code>4215</code>的代码，进行对比：<br><code>path node</code>:<br><img src="/images/28.png" alt="图片描述"><br><code>leaf node</code>:<br><img src="/images/29.png" alt="图片描述"><br>对别代码：<br>D:\Git\spark\sql\core\src\main\scala\org\apache\spark\sql\execution\python\ArrowPythonRunner.scala<br><img src="/images/30.png" alt="图片描述">  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>实验总结：  <ul>
-<li>在我看来 <code>path node</code>是在<code>leaf node</code>的基础上进行的扩充，其中<code>leaf node</code>属性提取的克隆对作为主要研究研究对象，<code>path node</code>仅提供辅助分析的作用。  </li>
-<li>本次实验代码长度的阈值设置不是很巧当，有昨天的2w条数据变为今天的100多条数据，中间很多小的代码块也可能存在代码克隆。  </li>
-<li>对于设置代码长度的这个方法，我的想法是只针对<code>path node</code>特征进行操作，因为我们昨天已经发现了，对于<code>leaf node</code>提取的2w条数据发现，基本上代码都是相同的（代码clone的第一种类型），不管是长代码还是短代码，只要全部相同就有很大的可能是代码克隆，所以设置代码长度阈值可以只实施在<code>path node</code>特征上，毕竟起到的是补充辅助的作用。  </li>
-</ul>
-</li>
-</ul>
-<p>加油！！！</p>
-
+        <script src="/crypto-js.js"></script><script src="/mcommon.js"></script><h3 id="encrypt-message">Please enter the password to read.</h3><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" password " /> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>
       
     </div>
 
@@ -553,7 +505,7 @@
   <p><span>本文标题:</span><a href="/2018/06/13/experment4/">简单代码克隆检测(三)(精简数据)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
   <p><span>发布时间:</span>2018年06月13日 - 20:06</p>
-  <p><span>最后更新:</span>2018年06月13日 - 21:06</p>
+  <p><span>最后更新:</span>2018年06月18日 - 02:06</p>
   <p><span>原始链接:</span><a href="/2018/06/13/experment4/" title="简单代码克隆检测(三)(精简数据)">http://daixinyuxuyisen.cn/2018/06/13/experment4/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/13/experment4/"  aria-label="复制成功！"></i></span>
   </p>
@@ -812,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，"><span class="nav-number">1.</span> <span class="nav-text">今天主要是解决昨天的问题，第二个特征提取的clone对过多，导致很多较短的方法也被误认为是clone对，今天做的实验室将方法的长度进行了限制，</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#encrypt-message"><span class="nav-number">1.</span> <span class="nav-text">Please enter the password to read.</span></a></li></ol></div>
             
 
           </div>
@@ -865,7 +817,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共3.7k字</span>
 </div>
 
         
