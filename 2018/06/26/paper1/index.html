@@ -115,13 +115,13 @@
 
 
 
-  <meta name="description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning自">
+  <meta name="description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning">
 <meta name="keywords" content="clone detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
 <meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/26/paper1/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning自">
+<meta property="og:description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/55.png">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/56.png">
@@ -137,10 +137,10 @@
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/66.png">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/67.png">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/68.png">
-<meta property="og:updated_time" content="2018-06-27T07:14:40.540Z">
+<meta property="og:updated_time" content="2018-06-27T07:16:07.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
-<meta name="twitter:description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning自">
+<meta name="twitter:description" content="原文链接： http://www.cs.wm.edu/~mtufano/publications/C9.pdf作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk文章来源： MSR 2018简介： 本文针对代码克隆检测，提出了基于Deep Learning">
 <meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/55.png">
 
 
@@ -447,7 +447,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-27 15:14:40" itemprop="dateModified" datetime="2018-06-27T15:14:40+08:00">2018-06-27</time>
+                <time title="修改时间：2018-06-27 15:16:07" itemprop="dateModified" datetime="2018-06-27T15:16:07+08:00">2018-06-27</time>
               
             
           </span>
@@ -498,7 +498,8 @@
       
 
       
-        <p>原文链接： <a href="http://www.cs.wm.edu/~mtufano/publications/C9.pdf" target="_blank" rel="noopener">http://www.cs.wm.edu/~mtufano/publications/C9.pdf</a><br>作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk<br>文章来源： MSR 2018<br>简介： 本文针对代码克隆检测，提出了基于<code>Deep Learning</code>自动学习代码相似性的方法，在混合四个<code>representation</code>的代码克隆检测中取得了较好的结果。   </p>
+        <a id="more"></a>
+<p>原文链接： <a href="http://www.cs.wm.edu/~mtufano/publications/C9.pdf" target="_blank" rel="noopener">http://www.cs.wm.edu/~mtufano/publications/C9.pdf</a><br>作者：Michele Tufano，Cody Watson，Gabriele Bavota，Massimiliano Di Penta，Martin White，Denys Poshyvanyk<br>文章来源： MSR 2018<br>简介： 本文针对代码克隆检测，提出了基于<code>Deep Learning</code>自动学习代码相似性的方法，在混合四个<code>representation</code>的代码克隆检测中取得了较好的结果。   </p>
 <h2 id="研究概况"><a href="#研究概况" class="headerlink" title="研究概况"></a>研究概况</h2><h3 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h3><p>源代码分析是许多软件工程任务的坚实基础。源代码分析方法依赖于许多不同的代码表示，例如源代码中的标识符、注释、抽象语法树、控制流图、数据流、字节码等，代码表示提供了不同的抽象级别，这些抽象级别在源代码之间创建了显式和隐式的关系。<br>现有的克隆检测方法利用基于手动指定特征集合的算法，例如：基于文本的、基于字符串的、基于token的、基于AST的、基于图形的和基于词典的等等。   </p>
 <h3 id="前人工作和不足"><a href="#前人工作和不足" class="headerlink" title="前人工作和不足"></a>前人工作和不足</h3><p>事实上已经有很多人使用DL来替代手动特征工程进行软件工程相关的研究(不局限于代码克隆检测)，例如：  </p>
 <ul>
