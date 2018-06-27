@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-27 15:09:46" itemprop="dateModified" datetime="2018-06-27T15:09:46+08:00">2018-06-27</time>
+                <time title="修改时间：2018-06-27 15:14:40" itemprop="dateModified" datetime="2018-06-27T15:14:40+08:00">2018-06-27</time>
               
             
           </span>
@@ -494,8 +494,10 @@
 <ul>
 <li>通过递归循环编码器进行<code>representation</code>的学习以实现代码克隆检测： 将源代码用标识符流和语法类型进行表示，提取出<code>representation</code>。</li>
 <li>基于<code>DL</code>和<code>IR</code>（Information Retrieval）的错误定位：利用<code>IR</code>技术自动提取文本相似性特征，之后神经网络通过学习将<code>bug</code>和<code>token</code>进行关联。</li>
-<li>基于<code>Deep Belief Network</code>(深度信任网络)的缺陷检测：使用DBN从AST中提取token vector,用来学习语义特征进而进行缺陷检测。<br>对于以上的工作来说，他们可以说是特征的选择都是根据软件工程研究人员或者这个领域的专家的直观的感觉或者经验来选取的，而且这些方法都需要大量的数据集的支持。   <h3 id="我们的工作"><a href="#我们的工作" class="headerlink" title="我们的工作"></a>我们的工作</h3>在本文中，我们提出了一个基本问题，底层的代码表示是否能成功应用于自动学习代码相似性。然后在我们的方法中，我们使用了<code>identifier</code>,<code>AST</code>,<code>CFG</code>,<code>bytecode</code>四个<code>representation</code>来表示代码，进而通过DL来检测代码的相似性。而且，我们还研究了模型的组合是否优于单个模型的性能，实验结果符合我们的预期，组合模型提供了更加全面的代码表示，性能要更好。   <h2 id="具体细节"><a href="#具体细节" class="headerlink" title="具体细节"></a>具体细节</h2><h3 id="过程简介"><a href="#过程简介" class="headerlink" title="过程简介"></a>过程简介</h3>我们的方法可以概括如下。 首先，以我们希望分析的不同粒度（例如，类，方法）选择代码片段。 接下来，对于每个选定的片段，我们提取其四种不同的表示（即标识符，AST，字节码和CFG）。 代码片段被嵌入为连续值矢量(continuous valued vectors)。为了检测相似的代码片段，在嵌入(embeddings)之间计算距离。  </li>
+<li>基于<code>Deep Belief Network</code>(深度信任网络)的缺陷检测：使用DBN从AST中提取token vector,用来学习语义特征进而进行缺陷检测。<br>对于以上的工作来说，他们可以说是特征的选择都是根据软件工程研究人员或者这个领域的专家的直观的感觉或者经验来选取的，而且这些方法都需要大量的数据集的支持。  </li>
 </ul>
+<h3 id="我们的工作"><a href="#我们的工作" class="headerlink" title="我们的工作"></a>我们的工作</h3><p>在本文中，我们提出了一个基本问题，底层的代码表示是否能成功应用于自动学习代码相似性。然后在我们的方法中，我们使用了<code>identifier</code>,<code>AST</code>,<code>CFG</code>,<code>bytecode</code>四个<code>representation</code>来表示代码，进而通过DL来检测代码的相似性。而且，我们还研究了模型的组合是否优于单个模型的性能，实验结果符合我们的预期，组合模型提供了更加全面的代码表示，性能要更好。   </p>
+<h2 id="具体细节"><a href="#具体细节" class="headerlink" title="具体细节"></a>具体细节</h2><h3 id="过程简介"><a href="#过程简介" class="headerlink" title="过程简介"></a>过程简介</h3><p>我们的方法可以概括如下。 首先，以我们希望分析的不同粒度（例如，类，方法）选择代码片段。 接下来，对于每个选定的片段，我们提取其四种不同的表示（即标识符，AST，字节码和CFG）。 代码片段被嵌入为连续值矢量(continuous valued vectors)。为了检测相似的代码片段，在嵌入(embeddings)之间计算距离。  </p>
 <h3 id="提取representation"><a href="#提取representation" class="headerlink" title="提取representation"></a>提取<code>representation</code></h3><p>给定一个项目，统计所有的<code>.java</code>和<code>.class</code>文件，对于java文件利用Eclipse中的JDT工具构造语法树，采用visitor模式来遍历所有的节点，选择所有的类或者方法，同时我们丢弃了<code>接口</code>和<code>抽象类</code>，分析他们没有什么意义，同时过滤掉小于<code>10</code>个语句的代码。  </p>
 <ul>
 <li>identifiers:  通过遍历语法树的叶子节点的值来提取特征，同时将常量分别用<code>&lt;int&gt;</code>,<code>&lt;float&gt;</code>,<code>&lt;char&gt;</code>,<code>&lt;string&gt;</code>等值进行代替。  </li>
@@ -506,8 +508,10 @@
 <h3 id="Deep-Learning-进行学习"><a href="#Deep-Learning-进行学习" class="headerlink" title="Deep Learning 进行学习"></a>Deep Learning 进行学习</h3><p>采用两种策略来学习嵌入(embedding）表示，对于标识符、AST、bytecode我们采用基于DL的方法，对于CFG我们采用<code>Graph embedding</code>技术。</p>
 <ul>
 <li>DL 策略：  分为两步，第一步用<code>RtNN</code>进行<code>Word Embedding</code>的学习，第二步是用<code>Recursive Autoencoder</code>（<a href="http://ai.stanford.edu/~ang/papers/emnlp11-RecursiveAutoencodersSentimentDistributions.pdf）进行句子`embedding`的学习：" target="_blank" rel="noopener">http://ai.stanford.edu/~ang/papers/emnlp11-RecursiveAutoencodersSentimentDistributions.pdf）进行句子`embedding`的学习：</a><br><img src="/images/55.png" alt="图片描述">  </li>
-<li>Graph Embedding 策略： 为了生成用于CFG表示的嵌入，我们使用图嵌入技术HOPE（High-Order Proximity preserved Embedding）。 HOPE学习两个嵌入向量;源矢量和每个顶点的目标矢量。然后根据边的权重和它们的性质（源或目标）为这些矢量分配值。 例如，考虑图2中的图。每个实线边是有向边，虚线边捕捉图的非对称传递性。为v1创建的矢量作为目标矢量将为0，因为没有路径将v1指定为其目标。但是，分配给v5目标矢量的值会更高，因为许多路径以v5作为其目标结束。HOPE通过每个顶点的奇异值分解创建和学习图的嵌入。 然后，通过对节点嵌入进行均值汇聚，可以生成整个图的单个嵌入。<br><a href="https://github.com/palash1992/GEM" target="_blank" rel="noopener">https://github.com/palash1992/GEM</a><br><img src="/images/56.png" alt="图片描述">   <h3 id="探索相似性"><a href="#探索相似性" class="headerlink" title="探索相似性"></a>探索相似性</h3>通过统计每个<code>representation</code>生成出来的距离矩阵，并根据相应的阈值来探索代码克隆  <h3 id="组合模型"><a href="#组合模型" class="headerlink" title="组合模型"></a>组合模型</h3>利用集合学习技术来将每个单独的<code>representation</code>学习出来的距离进行组合。最常用的集合学习技术就是求一些代数表达式(总和、平均值、乘积、中值等)，例如加权平均和：<br><img src="/images/57.png" alt="图片描述"><br>另一种方法就是采用投票的方法。<br>也可以采用随机森林的方法对结果进行统计。  </li>
+<li>Graph Embedding 策略： 为了生成用于CFG表示的嵌入，我们使用图嵌入技术HOPE（High-Order Proximity preserved Embedding）。 HOPE学习两个嵌入向量;源矢量和每个顶点的目标矢量。然后根据边的权重和它们的性质（源或目标）为这些矢量分配值。 例如，考虑图2中的图。每个实线边是有向边，虚线边捕捉图的非对称传递性。为v1创建的矢量作为目标矢量将为0，因为没有路径将v1指定为其目标。但是，分配给v5目标矢量的值会更高，因为许多路径以v5作为其目标结束。HOPE通过每个顶点的奇异值分解创建和学习图的嵌入。 然后，通过对节点嵌入进行均值汇聚，可以生成整个图的单个嵌入。<br><a href="https://github.com/palash1992/GEM" target="_blank" rel="noopener">https://github.com/palash1992/GEM</a><br><img src="/images/56.png" alt="图片描述">   </li>
 </ul>
+<h3 id="探索相似性"><a href="#探索相似性" class="headerlink" title="探索相似性"></a>探索相似性</h3><p>通过统计每个<code>representation</code>生成出来的距离矩阵，并根据相应的阈值来探索代码克隆  </p>
+<h3 id="组合模型"><a href="#组合模型" class="headerlink" title="组合模型"></a>组合模型</h3><p>利用集合学习技术来将每个单独的<code>representation</code>学习出来的距离进行组合。最常用的集合学习技术就是求一些代数表达式(总和、平均值、乘积、中值等)，例如加权平均和：<br><img src="/images/57.png" alt="图片描述"><br>另一种方法就是采用投票的方法。<br>也可以采用随机森林的方法对结果进行统计。  </p>
 <h3 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h3><p>该实验的目的是调查是否可以从不同类型的程序表示中学习源代码相似性，目的是了解是否可以组合不同的表示形式以获得更好的结果，或者在某些表示形式不可用时使用替代表示形式。 更具体地说，该研究旨在回答以下研究问题（RQ）：</p>
 <ul>
 <li>在检测相似的代码片段时，不同的表示法(<code>representation</code>)是否有效 </li>
@@ -522,7 +526,7 @@
 <h4 id="RQ3-How-effective-are-combined-multi-representation-models"><a href="#RQ3-How-effective-are-combined-multi-representation-models" class="headerlink" title="RQ3:How effective are combined multi-representation models?"></a>RQ3:How effective are combined multi-representation models?</h4><p>为了回答这个问题，我们提出了两个组合模型第一个是<code>CloneDetector</code>,判断<code>true positive or false positive</code>，另一个是<code>CloneClassifier</code>,判断<code>clone type</code>(四个类型)  所使用的数据也就是<code>RQ1</code>中手动标记的数据。为了训练这两个模型，我们依靠随机森林采用常用的10倍交叉验证技术来划分训练和测试集。</p>
 <h4 id="RQ4-Are-DL-based-models-applicable-for-detecting-clones-among-different-projects"><a href="#RQ4-Are-DL-based-models-applicable-for-detecting-clones-among-different-projects" class="headerlink" title="RQ4: Are DL-based models applicable for detecting clones among different projects?"></a>RQ4: Are DL-based models applicable for detecting clones among different projects?</h4><p>对46个开源的<code>java libraries</code>进行试验。  </p>
 <h4 id="RQ5-Can-trained-DL-based-models-be-reused-on-different-previously-unseen-projects"><a href="#RQ5-Can-trained-DL-based-models-be-reused-on-different-previously-unseen-projects" class="headerlink" title="RQ5: Can trained DL-based models be reused on different, previously unseen projects?"></a>RQ5: Can trained DL-based models be reused on different, previously unseen projects?</h4><p>DL模型的一个缺点是训练时间长。如果这些模型可以在属于不同领域的不同项目中重复使用，则此培训时间可以摊销。阻碍这些模型重用的主要因素是出现新的词汇，导致我们在预测的时候出现差异。<br>为了解决这个问题，我们决定只针对<code>AST representation</code>做实验进行观察，因为<code>AST</code>中的词汇是固定，只要是java项目用jdt提取的值，不会出现新的词汇，然后我们训练了一个java项目中的<code>AST</code>模型，然后用这个模型产生剩下9个模型的<code>embedding</code>，然后拿原来模型产生的<code>embedding (Lo)</code> 和重用模型产生的<code>embedding (LR)</code>进行对比。    </p>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><h4 id="RQ1"><a href="#RQ1" class="headerlink" title="RQ1"></a>RQ1</h4><p><img src="/images/62.png" alt="图片描述"><br><img src="/images/63.png" alt="图片描述">  </p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><h4 id="RQ1"><a href="#RQ1" class="headerlink" title="RQ1"></a>RQ1</h4><p><img src="/images/62.png" alt="图片描述"><br><img src="/images/63.png" alt="图片描述"> </p>
 <h4 id="RQ2"><a href="#RQ2" class="headerlink" title="RQ2"></a>RQ2</h4><p><img src="/images/64.png" alt="图片描述"><br><img src="/images/65.png" alt="图片描述">  </p>
 <h4 id="RQ3"><a href="#RQ3" class="headerlink" title="RQ3"></a>RQ3</h4><p><img src="/images/66.png" alt="图片描述"><br><img src="/images/67.png" alt="图片描述"> </p>
 <h4 id="RQ5"><a href="#RQ5" class="headerlink" title="RQ5"></a>RQ5</h4><p><img src="/images/68.png" alt="图片描述"> </p>
