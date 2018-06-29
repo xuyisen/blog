@@ -115,29 +115,29 @@
 
 
 
-  <meta name="description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
-<meta name="keywords" content="AST">
+  <meta name="description" content="本文主要介绍根据前几次的实验，编写、整合一个用于检测scala代码克隆的工具，目前只是第一版本。">
+<meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AST">
-<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/08/AST/index.html">
+<meta property="og:title" content="简单代码克隆代码检测(六)(克隆工具第一版本)">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/29/experment7/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
+<meta property="og:description" content="本文主要介绍根据前几次的实验，编写、整合一个用于检测scala代码克隆的工具，目前只是第一版本。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5cab0871e.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a5fb82699e.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a6012ac69a.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a604443ddf.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a609ceb152.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png">
-<meta property="og:updated_time" content="2018-06-09T14:12:10.833Z">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/69.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/70.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/71.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/72.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/73.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/74.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/75.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/76.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/77.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/78.png">
+<meta property="og:updated_time" content="2018-06-29T09:40:18.414Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AST">
-<meta name="twitter:description" content="Scala AST 叶子节点提取 背景： 前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取 Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png">
+<meta name="twitter:title" content="简单代码克隆代码检测(六)(克隆工具第一版本)">
+<meta name="twitter:description" content="本文主要介绍根据前几次的实验，编写、整合一个用于检测scala代码克隆的工具，目前只是第一版本。">
+<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/69.png">
 
 
 
@@ -146,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/06/08/AST/"/>
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/06/29/experment7/"/>
 
 
 
@@ -156,7 +156,7 @@
   };
 </script>
 
-  <title>AST | 许宜森的个人博客</title>
+  <title>简单代码克隆代码检测(六)(克隆工具第一版本) | 许宜森的个人博客</title>
   
 
 
@@ -384,7 +384,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/06/08/AST/">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/06/29/experment7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="许宜森">
@@ -401,7 +401,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AST
+          <h1 class="post-title" itemprop="name headline">简单代码克隆代码检测(六)(克隆工具第一版本)
               
             
           </h1>
@@ -426,24 +426,12 @@
                 
               
 
-              <time title="创建时间：2018-06-08 09:42:52" itemprop="dateCreated datePublished" datetime="2018-06-08T09:42:52+08:00">2018-06-08</time>
+              <time title="创建时间：2018-06-29 16:32:56 / 修改时间：17:40:18" itemprop="dateCreated datePublished" datetime="2018-06-29T16:32:56+08:00">2018-06-29</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-06-09 22:12:10" itemprop="dateModified" datetime="2018-06-09T22:12:10+08:00">2018-06-09</time>
               
             
           </span>
@@ -494,37 +482,23 @@
       
 
       
-        <h3 id="Scala-AST-叶子节点提取"><a href="#Scala-AST-叶子节点提取" class="headerlink" title="Scala AST 叶子节点提取"></a>Scala AST 叶子节点提取</h3><ul>
-<li>背景：<ul>
-<li>前几天由于考试没有来得及整理基础知识，今天在这里先整理一下这两天做的Scala叶子节点的值提取</li>
-<li>Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。Scala 运行在Java虚拟机上，并兼容现有的Java程序。Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。(百度百科）<a id="more"></a></li>
-</ul>
-</li>
-<li>实验步骤：<ul>
-<li>使用的工具：<ul>
-<li>scala meta : <a href="https://scalameta.org/" target="_blank" rel="noopener">https://scalameta.org/</a></li>
-<li>Intellij Idea: <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">https://www.jetbrains.com/idea/</a></li>
-</ul>
-</li>
-<li>借助的参考资料：<ul>
-<li>scala meta的示例程序</li>
-<li>浏览器 构造 scala AST 树：<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a></li>
-</ul>
-</li>
-<li>实验带代码：<br>  查看 scala meta 源程序可以发现 ，该工具里面有一个Tree的类，该类有children 属性和parent属性：<img src="https://i.loli.net/2018/06/08/5b1a5c0fda8dd.png" alt="图片描述"><br>  所以可以根据这个类来进行遍历得到我们需要的叶子节点的数据，在这里我采用visitor的方式来进行遍历。主要的遍历的对象有以下几个：<br>  <img src="https://i.loli.net/2018/06/08/5b1a5cab0871e.png" alt="图片描述"><br>  分别代表Scala中的各个语法，这里在做的时候出现了几个问题。一个是Term.param和Type.param 需要“精准的查找”，不能像其他的Term.Name,Term.Annonate那样，可以通过Term来进行查找：<img src="https://i.loli.net/2018/06/08/5b1a5dc5f0c91.png" alt="标题"><br>  也就是说其他的Term里面的属性可以通过遍历Term然后再进行查找，但是这个Term.param必须在第一次遍历的时候就指出来，难道Term.param不属于Term?很奇怪。以后再查一查。</li>
-<li>代码的逻辑并不难，下面就开始打印叶子节点，通过观察浏览器AST解析器<a href="https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7" target="_blank" rel="noopener">https://astexplorer.net/#/gist/22cf8a3fcb2155c087ae94b4d194c1b6/d10c646ecfae4c69c919408aa3aaefb2deda2df7</a><br>发现：叶子节点主要在以下几个地方打印：<br><img src="https://i.loli.net/2018/06/08/5b1a5f3dcd9de.png" alt="图片描述">基本数据类型<br><img src="https://i.loli.net/2018/06/08/5b1a5f81f12ba.png" alt="图片描述">Term.Name处<img src="https://i.loli.net/2018/06/08/5b1a5fb82699e.png" alt="图片描述">Type.Name 处<br>还有一个是Name处</li>
-</ul>
-</li>
-<li>实验的最终结果：<ul>
-<li><img src="https://i.loli.net/2018/06/08/5b1a6012ac69a.png" alt="图片描述">Scala 源代码</li>
-<li><img src="https://i.loli.net/2018/06/08/5b1a604443ddf.png" alt="图片描述"> 提取的叶子节点</li>
-<li><img src="https://i.loli.net/2018/06/08/5b1a609ceb152.png" alt="图片描述"> 源代码</li>
-<li><img src="https://i.loli.net/2018/06/08/5b1a60d3a65f9.png" alt="图片描述"> 提取的叶子节点</li>
-</ul>
-</li>
-<li>总结：实验结果还未仔细观察，具体的细节有待改进，还有就是上次说的将string值改成<string>等基本数据的转化还未加入。</string></li>
-</ul>
-<p>本博客持续更新。</p>
+        <p>本文主要介绍根据前几次的实验，编写、整合一个用于检测scala代码克隆的工具，目前只是第一版本。   </p>
+<a id="more"></a>  
+<h2 id="实验简述"><a href="#实验简述" class="headerlink" title="实验简述"></a>实验简述</h2><p>通过前几期的博客我已经知道了检测代码克隆的具体流程，基本上分以下几步，<code>从源代码提取词-&gt;word embedding-&gt;sentence embedding-&gt;统计句子向量之间的距离-&gt;筛选出距离小于某个值的克隆对</code>。之前参考的实验只提供了从<code>word embedding</code>到<code>统计句子向量之间的距离</code>的部分代码，而且使用的是<code>matlab</code>代码，所以我想把所有的流程整合到一起，尽量用同一种语言进行实现。  </p>
+<h3 id="将提取特征的scala代码打成jar包"><a href="#将提取特征的scala代码打成jar包" class="headerlink" title="将提取特征的scala代码打成jar包"></a>将提取特征的scala代码打成<code>jar</code>包</h3><p>将之前写的提取scala的代码打成jar方便使用，具体的流程参考链接： <a href="https://blog.csdn.net/freecrystal_alex/article/details/78296851" target="_blank" rel="noopener">https://blog.csdn.net/freecrystal_alex/article/details/78296851</a><br>之后在命令行试验了一下，居然出错了，在编译器里好好的，查看了一下错误<br><img src="/images/69.png" alt="图片描述"><br>网上说是文件读取的问题，读取的文件里面有中文字符抛出异常，尝试了网上说的几个方法，最终是加了一行代码解决这个问题<br><img src="/images/70.png" alt="图片描述"><br>最终jar执行无误：<br><img src="/images/71.png" alt="图片描述"><br>jar包的输入参数有两个，一个是<code>-leaf</code>or<code>-path</code>对应的是提取第一个还是第二个representation,第二个参数是项目的绝对路径，输出的是两个txt文件，一个是提取的特征，用于实验，另一个是每个特征对应scala文件的目录，方便查找对应的源代码。<br><img src="/images/72.png" alt="图片描述"><br><img src="/images/73.png" alt="图片描述">   </p>
+<h3 id="修改word-embedding代码"><a href="#修改word-embedding代码" class="headerlink" title="修改word embedding代码"></a>修改<code>word embedding</code>代码</h3><p>之前word embedding 是直接调用源码来实现，需要到linux系统中，先make，再调用，比较麻烦，我直接问赵俐俐学姐要了之前做实验的python的代码，基本上实现了<code>word embedding</code>这个部分的功能。  </p>
+<h3 id="修改autoencode代码"><a href="#修改autoencode代码" class="headerlink" title="修改autoencode代码"></a>修改<code>autoencode</code>代码</h3><p>之前的<code>autoencode</code>的代码是用<code>matlab</code>写的，我想把它转换成<code>python</code>语言，在github上搜了一下，有两个版本，一个是<code>java</code>版本，论文原作者写的：  <a href="https://github.com/sancha/jrae" target="_blank" rel="noopener">https://github.com/sancha/jrae</a><br>另一个是<code>python</code>版本的，是清华的一个博士生在2014年写的：  <a href="https://github.com/pengli09/str2vec" target="_blank" rel="noopener">https://github.com/pengli09/str2vec</a><br>为了方便与word embedding 整合，我选择了<code>python</code>版本的autoencoders 。<br>接下来就是漫长的~配置环境的过程，在代码的主页上给出了代码所需的库，<br><img src="/images/74.png" alt="图片描述"><br>其他的都能够在服务器上简单进行配置(linux),但是就是<code>openmpi</code>这个包，一直出错，整了好久，都没有成功，而且我用的还是腾讯云的服务器，很卡很慢，所以就决定直接在本地的windows系统进行试验，参照博客将整个环境配置好了：  <a href="https://blog.csdn.net/mengmengz07/article/details/70174905" target="_blank" rel="noopener">https://blog.csdn.net/mengmengz07/article/details/70174905</a><br><img src="/images/75.png" alt="图片描述">   </p>
+<h3 id="统计相似的克隆代码"><a href="#统计相似的克隆代码" class="headerlink" title="统计相似的克隆代码"></a>统计相似的克隆代码</h3><p>上面说的python版本的<code>autoencode</code>最终输出的是一个句子的向量，没有给出具体的距离矩阵和相似代码的id，所以就修改了一下内部代码，利用python spicy 包里的函数生成了距离矩阵，并统计了距离小于<code>1e-16</code>的代码对。   </p>
+<h3 id="程序的运行时间"><a href="#程序的运行时间" class="headerlink" title="程序的运行时间"></a>程序的运行时间</h3><p>像提取数据和<code>word embedding</code>的运行时间都比较短，可以不用担心，主要是这个<code>autoencode</code>运行时间很长，我在本地上跑，5000条样本，87条词向量，最大迭代为2次 运行的时间大概在35分钟左右，对比matlab来说短了一点点，并没有变的非常快，可能是我机子本身性能的问题。还有就是，论文中推荐迭代次数最好在100到200之间，我们现在2次迭代就那么长时间，感觉之后的时间会更长。这个问题有待解决。  </p>
+<h2 id="工具使用说明："><a href="#工具使用说明：" class="headerlink" title="工具使用说明："></a>工具使用说明：</h2><h3 id="项目结构截图："><a href="#项目结构截图：" class="headerlink" title="项目结构截图："></a>项目结构截图：</h3><p><img src="/images/76.png" alt="图片描述">  </p>
+<h3 id="运行-jar包-提取-representation"><a href="#运行-jar包-提取-representation" class="headerlink" title="运行 jar包 提取 representation"></a>运行 jar包 提取 representation</h3><p><code>java -jar scala_parser.jar -path\-leaf  {file_path}</code><br>将生成的 <code>sample-training-file.txt</code> 文件放到<code>input</code>文件夹下  </p>
+<h3 id="执行-run-word2vec-sh"><a href="#执行-run-word2vec-sh" class="headerlink" title="执行 run_word2vec.sh"></a>执行 run_word2vec.sh</h3><p><code>./run_word2vec.sh</code>  </p>
+<p>这里没有参数进行输入，我把参数都写在.sh文件里面，之后修改可以在.sh文件中进行修改，一共三个参数，输入文件、输出文件、embedding size   </p>
+<p><img src="/images/77.png" alt="图片描述">  </p>
+<h3 id="执行-mpi-train-sh"><a href="#执行-mpi-train-sh" class="headerlink" title="执行 mpi-train.sh"></a>执行 mpi-train.sh</h3><p><code>./mpi-train.sh {coreNum}</code><br>这里需要输入一个coreNum参数，意思是使用电脑里面核的个数  </p>
+<h3 id="执行-compute-vector-sh"><a href="#执行-compute-vector-sh" class="headerlink" title="执行 compute-vector.sh"></a>执行 compute-vector.sh</h3><p><code>./compute-vector.sh</code>  </p>
+<h3 id="最终的结果文件"><a href="#最终的结果文件" class="headerlink" title="最终的结果文件"></a>最终的结果文件</h3><p>最终会在output文件夹中生成一个<code>sample-training-file.vec.txt</code>文件 ，里面是相似代码的id，跟之前我们第一步生成的<code>sourceName.txt</code>文件中的行数进行对比，查找源文件中的代码，(<code>注意因为id是从0开始的，所以对应的行数为实际的行数减1</code>)  </p>
+<p><img src="/images/78.png" alt="图片描述">  </p>
 
       
     </div>
@@ -544,12 +518,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/06/08/AST/">AST</a></p>
+  <p><span>本文标题:</span><a href="/2018/06/29/experment7/">简单代码克隆代码检测(六)(克隆工具第一版本)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
-  <p><span>发布时间:</span>2018年06月08日 - 09:06</p>
-  <p><span>最后更新:</span>2018年06月09日 - 22:06</p>
-  <p><span>原始链接:</span><a href="/2018/06/08/AST/" title="AST">http://daixinyuxuyisen.cn/2018/06/08/AST/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/08/AST/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年06月29日 - 16:06</p>
+  <p><span>最后更新:</span>2018年06月29日 - 17:06</p>
+  <p><span>原始链接:</span><a href="/2018/06/29/experment7/" title="简单代码克隆代码检测(六)(克隆工具第一版本)">http://daixinyuxuyisen.cn/2018/06/29/experment7/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/29/experment7/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -589,7 +563,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AST/" rel="tag">AST</a>
+            <a href="/tags/clone-detection/" rel="tag">clone_detection</a>
           
         </div>
       
@@ -602,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/06/daily1/" rel="next" title="日记">
-                <i class="fa fa-chevron-left"></i> 日记
+              <a href="/2018/06/26/paper1/" rel="next" title="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记
               </a>
             
           </div>
@@ -611,10 +585,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/09/experment1/" rel="prev" title="AST树提取进展">
-                AST树提取进展 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -814,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-AST-叶子节点提取"><span class="nav-number">1.</span> <span class="nav-text">Scala AST 叶子节点提取</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验简述"><span class="nav-number">1.</span> <span class="nav-text">实验简述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将提取特征的scala代码打成jar包"><span class="nav-number">1.1.</span> <span class="nav-text">将提取特征的scala代码打成jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改word-embedding代码"><span class="nav-number">1.2.</span> <span class="nav-text">修改word embedding代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改autoencode代码"><span class="nav-number">1.3.</span> <span class="nav-text">修改autoencode代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计相似的克隆代码"><span class="nav-number">1.4.</span> <span class="nav-text">统计相似的克隆代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序的运行时间"><span class="nav-number">1.5.</span> <span class="nav-text">程序的运行时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具使用说明："><span class="nav-number">2.</span> <span class="nav-text">工具使用说明：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目结构截图："><span class="nav-number">2.1.</span> <span class="nav-text">项目结构截图：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行-jar包-提取-representation"><span class="nav-number">2.2.</span> <span class="nav-text">运行 jar包 提取 representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-run-word2vec-sh"><span class="nav-number">2.3.</span> <span class="nav-text">执行 run_word2vec.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-mpi-train-sh"><span class="nav-number">2.4.</span> <span class="nav-text">执行 mpi-train.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-compute-vector-sh"><span class="nav-number">2.5.</span> <span class="nav-text">执行 compute-vector.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终的结果文件"><span class="nav-number">2.6.</span> <span class="nav-text">最终的结果文件</span></a></li></ol></li></ol></div>
             
 
           </div>
