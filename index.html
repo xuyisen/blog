@@ -392,7 +392,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/07/06/experment8/" itemprop="url">
-                  未命名
+                  简单代码克隆检测七(数据分析)
                 </a>
               
             
@@ -418,7 +418,7 @@
                 
               
 
-              <time title="创建时间：2018-07-06 18:08:58 / 修改时间：18:40:07" itemprop="dateCreated datePublished" datetime="2018-07-06T18:08:58+08:00">2018-07-06</time>
+              <time title="创建时间：2018-07-06 18:08:58 / 修改时间：19:00:20" itemprop="dateCreated datePublished" datetime="2018-07-06T18:08:58+08:00">2018-07-06</time>
             
 
             
@@ -428,6 +428,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -457,16 +475,45 @@
 
       
         
-          <hr>
-<p>title: 简单代码克隆检测七(数据分析)<br>comment: true<br>copyright: true<br>date: 2018-07-06 18:08:58<br>categories: Scala  </p>
-<h2 id="tags-clone-detection"><a href="#tags-clone-detection" class="headerlink" title="tags: clone_detection"></a>tags: clone_detection</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/06/experment8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <a id="more"></a>  
+<p>本博客主要对跑出来的clone对进行打标签和统计数据   </p>
+<h2 id="提取克隆对源代码"><a href="#提取克隆对源代码" class="headerlink" title="提取克隆对源代码"></a>提取克隆对源代码</h2><p>上次开会的吴老师建议我们用代码根据id来查找源代码，我感觉很有道理，人工筛选的话费时费力，随意我直接在原来的提取AST node的代码上加了根据id查找源代码的功能。   </p>
+<p><img src="/images/79.png" alt="图片描述">   </p>
+<p>最终的提取的数据类似于：<br><img src="/images/80.png" alt="图片描述">   </p>
+<h2 id="对提取的克隆代码进行打标签"><a href="#对提取的克隆代码进行打标签" class="headerlink" title="对提取的克隆代码进行打标签"></a>对提取的克隆代码进行打标签</h2><p>这里我们找了三个人负责为每个克隆对打标签，这里要感谢何学弟、段学妹、浦帆的帮忙，打的标签的标准是根据论文中的克隆的四中类型判断标准进行，用1,2,3,4分别代表类型1，2，3，4。0代表该克隆对不属于克隆，最后根据投票制选出我们认为最终的克隆类型，我主要负责统计representation1提取的代码对和representation2提取的代码对的交集和差异集。<br>打标签的数据   </p>
+<p><img src="/images/81.png" alt="图片描述">     </p>
+<h2 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Project</th>
+<th style="text-align:center">Type I</th>
+<th style="text-align:center">Type II</th>
+<th style="text-align:center">Type III</th>
+<th style="text-align:center">Type IV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">code</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">93</td>
+<td style="text-align:center">89</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">spark</td>
+<td style="text-align:center">106</td>
+<td style="text-align:center">176</td>
+<td style="text-align:center">71</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+<p><code>code</code>:<br>|Representations|Type I|Type II|Type III|Type IV|<br>|:-:|:-:|:-:|:-:|:-:|:-:|<br>|Representation1|14|6|4|1|<br>|Representation2|13|93|89|0|   </p>
+<p>representation 1 提取的克隆对 并不是都是 Type1的，而且按理说representation2提取的克隆对应该包括所有的representation1提取的数据，但是code里面有两个没有识别出来，spark里面有6个没有识别出来，而且还是Type 1,对与这个结果还需要详细的分析。     </p>
+
+          
         
       
     </div>
