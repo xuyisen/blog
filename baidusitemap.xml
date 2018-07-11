@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/11/experment9/</loc>
+    <lastmod>2018-07-11T05:19:35.623Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(实验数据对比)</title>
+        <pubTime>2018-07-11T02:14:46.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://daixinyuxuyisen.cn/2018/07/06/experment8/</loc>
-    <lastmod>2018-07-06T11:00:20.869Z</lastmod>
+    <lastmod>2018-07-11T02:17:26.669Z</lastmod>
     <data>
         <display>
         <title>简单代码克隆检测七(数据分析)</title>
