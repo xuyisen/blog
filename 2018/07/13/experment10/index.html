@@ -115,27 +115,24 @@
 
 
 
-  <meta name="description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
-<meta name="keywords" content="AST">
+  <meta name="description" content="本博客主要对scala 函数式语言及其二进制代码进行分析，讨论第四种类型代码克隆的检测方法。">
+<meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AST树提取进展">
-<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/09/experment1/index.html">
+<meta property="og:title" content="简单克隆代码检测(函数式语言简略分析)">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/07/13/experment10/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
+<meta property="og:description" content="本博客主要对scala 函数式语言及其二进制代码进行分析，讨论第四种类型代码克隆的检测方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bcfec946d8.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd122d8519.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd7d5baf20.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd828e787a.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd8cbbc23b.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd922794ab.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd8eb96c6d.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/09/5b1bd8a286de6.png">
-<meta property="og:updated_time" content="2018-07-05T05:52:41.164Z">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/92.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/93.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/94.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/95.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/96.png">
+<meta property="og:updated_time" content="2018-07-13T10:34:01.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AST树提取进展">
-<meta name="twitter:description" content="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/09/5b1bcfec946d8.png">
+<meta name="twitter:title" content="简单克隆代码检测(函数式语言简略分析)">
+<meta name="twitter:description" content="本博客主要对scala 函数式语言及其二进制代码进行分析，讨论第四种类型代码克隆的检测方法。">
+<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/92.png">
 
 
 
@@ -144,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/06/09/experment1/"/>
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/07/13/experment10/"/>
 
 
 
@@ -154,7 +151,7 @@
   };
 </script>
 
-  <title>AST树提取进展 | 许宜森的个人博客</title>
+  <title>简单克隆代码检测(函数式语言简略分析) | 许宜森的个人博客</title>
   
 
 
@@ -382,7 +379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/06/09/experment1/">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/07/13/experment10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="许宜森">
@@ -399,7 +396,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AST树提取进展
+          <h1 class="post-title" itemprop="name headline">简单克隆代码检测(函数式语言简略分析)
               
             
           </h1>
@@ -424,24 +421,12 @@
                 
               
 
-              <time title="创建时间：2018-06-09 20:55:53" itemprop="dateCreated datePublished" datetime="2018-06-09T20:55:53+08:00">2018-06-09</time>
+              <time title="创建时间：2018-07-13 17:38:39 / 修改时间：18:34:01" itemprop="dateCreated datePublished" datetime="2018-07-13T17:38:39+08:00">2018-07-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-07-05 13:52:41" itemprop="dateModified" datetime="2018-07-05T13:52:41+08:00">2018-07-05</time>
               
             
           </span>
@@ -492,17 +477,30 @@
       
 
       
-        <h2 id="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"><a href="#今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据" class="headerlink" title="今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"></a>今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据</h2><a id="more"></a>
+        <p>本博客主要对scala 函数式语言及其二进制代码进行分析，讨论第四种类型代码克隆的检测方法。<br><a id="more"></a>  </p>
+<h2 id="函数式编程简介："><a href="#函数式编程简介：" class="headerlink" title="函数式编程简介："></a>函数式编程简介：</h2><p>函数式编程是种编程方式，它将电脑运算视为函数的计算。函数编程语言最重要的基础是λ演算（lambda calculus），而且λ演算的函数可以接受函数当作输入（参数）和输出（返回值）。  </p>
+<p>和指令式编程相比，函数式编程强调函数的计算比指令的执行重要。  </p>
+<p>和过程化编程相比，函数式编程里函数的计算可随时调用。  </p>
+<h2 id="本文所做的主要实验"><a href="#本文所做的主要实验" class="headerlink" title="本文所做的主要实验"></a>本文所做的主要实验</h2><ul>
+<li>提取spark源码的所有相关的函数式语言。   </li>
+</ul>
+<p><img src="/images/92.png" alt="图片描述">  </p>
+<p>通过观察发现函数式语言比较短小，而且大多数会在<code>def</code>函数里面使用，当做一条子语句。   </p>
 <ul>
-<li>实验步骤：<ul>
-<li>按照昨天写的代码，只需要加一个循环遍历文件的函数就可以了 <img src="https://i.loli.net/2018/06/09/5b1bcfec946d8.png" alt="图片描述">然后第一个问题出现了，scala meta 这个工具还不是很成熟，对于部分文件在parse的时候会抛出异常 <img src="https://i.loli.net/2018/06/09/5b1bd122d8519.png" alt="图片描述"><br>在网上查了好久，网上也有许多人遇到这个问题，但是scala meta并没有提供解决的办法。经过不懈的努力，最终在评论区找到了解决方法，这个bug主要是<code>s&quot;xxxxxxx&quot;</code>后面直接换行引起的(黑人问号)，只要在<code>\n</code>后面加一个空格就可以了(黑人问号)。 <img src="https://i.loli.net/2018/06/09/5b1bd7d5baf20.png" alt="图片描述"><br>所以我就对我们输入的数据进行了预处理，所有包含字符串<code>s&quot;xxxxx&quot;</code>的行的<code>\n</code>都进行了变换。 <img src="https://i.loli.net/2018/06/09/5b1bd828e787a.png" alt="图片描述"></li>
-<li>第二个问题，嵌套函数的问题，因为我们测试的数据是在方法级别上的进行抽取，所以就会出现嵌套函数的问题，具体的嵌套函数的示例如下图所示：    <img src="https://i.loli.net/2018/06/09/5b1bd8cbbc23b.png" alt="图片描述"> 在这里的问题主要是将子函数抽取出来作为一条数据还是将子函数作为一条像if语句那样的句子作为父函数的一部分，经过跟几位老师讨论，我们决定采用第一种方式，原因是第一子函数的粒度小，第二就是在函数的功能上面还是子函数为主，对于第四种类型的代码克隆的判断来说更加有利。所以我利用栈的思想将子函数剥离出来：<img src="https://i.loli.net/2018/06/09/5b1bd922794ab.png" alt="图片描述"><br>最终的结果是：    <img src="https://i.loli.net/2018/06/09/5b1bd8eb96c6d.png" alt="图片描述"><br>其中13是父函数，12是子函数。</li>
+<li>通过javap语句来获取class文件的相应的指令   </li>
 </ul>
-</li>
-<li>最终结果：<ul>
-<li>成功提取spark代码里面的27042条样本，明天开始进行测试算法效果，并且再读一遍论文，整理一下文档<br><img src="https://i.loli.net/2018/06/09/5b1bd8a286de6.png" alt="图片描述"><br>加油！！！！  还要好好学一下英语和线代和算法！！！</li>
+<p><img src="/images/93.png" alt="图片描述">    </p>
+<p>发现基本上函数式语言会自动生成一个单独的class文件   </p>
+<p><img src="/images/94.png" alt="图片描述">    </p>
+<ul>
+<li>示例函数   </li>
 </ul>
-</li>
+<p>但是那么多的函数式语言我不能判断哪个函数式语言和哪个函数是相似的，所以我自己写了一个示例函数，编译，然后观察生成的二进制代码； </p>
+<p><img src="/images/95.png" alt="图片描述">    </p>
+<p><img src="/images/96.png" alt="图片描述">    </p>
+<p>发现这两个是完全一样的。如果通过representation1和representation2来对这两个函数进行判断是无法判断的，但是通过二进制就可以判断这两个函数是相通的，所以bytecode在第四种类型的克隆中有非常大的作用。   </p>
+<ul>
+<li>Type IV类型的克隆的示例   </li>
 </ul>
 
       
@@ -523,12 +521,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/06/09/experment1/">AST树提取进展</a></p>
+  <p><span>本文标题:</span><a href="/2018/07/13/experment10/">简单克隆代码检测(函数式语言简略分析)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
-  <p><span>发布时间:</span>2018年06月09日 - 20:06</p>
-  <p><span>最后更新:</span>2018年07月05日 - 13:07</p>
-  <p><span>原始链接:</span><a href="/2018/06/09/experment1/" title="AST树提取进展">http://daixinyuxuyisen.cn/2018/06/09/experment1/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/09/experment1/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年07月13日 - 17:07</p>
+  <p><span>最后更新:</span>2018年07月13日 - 18:07</p>
+  <p><span>原始链接:</span><a href="/2018/07/13/experment10/" title="简单克隆代码检测(函数式语言简略分析)">http://daixinyuxuyisen.cn/2018/07/13/experment10/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/07/13/experment10/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -568,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AST/" rel="tag">AST</a>
+            <a href="/tags/clone-detection/" rel="tag">clone_detection</a>
           
         </div>
       
@@ -581,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/08/AST/" rel="next" title="AST">
-                <i class="fa fa-chevron-left"></i> AST
+              <a href="/2018/07/11/yasi2/" rel="next" title="雅思阅读知识点">
+                <i class="fa fa-chevron-left"></i> 雅思阅读知识点
               </a>
             
           </div>
@@ -590,10 +588,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/10/experment2/" rel="prev" title="简单代码克隆检测一(AST leaf)">
-                简单代码克隆检测一(AST leaf) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -805,7 +799,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据"><span class="nav-number">1.</span> <span class="nav-text">今天主要把昨天没有做完的工作进行了扩展，由提取单一文件的叶子节点扩展到提取到整个项目的叶子节点，然后将类级别的数据修改成方法级别的数据</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程简介："><span class="nav-number">1.</span> <span class="nav-text">函数式编程简介：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文所做的主要实验"><span class="nav-number">2.</span> <span class="nav-text">本文所做的主要实验</span></a></li></ol></div>
             
 
           </div>
