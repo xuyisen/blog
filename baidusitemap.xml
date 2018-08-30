@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://daixinyuxuyisen.cn/2018/08/30/experment12/</loc>
+    <lastmod>2018-08-30T02:24:39.374Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(Scala函数式编程初探)</title>
+        <pubTime>2018-08-30T01:44:56.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://daixinyuxuyisen.cn/2018/08/24/experment11/</loc>
     <lastmod>2018-08-24T09:51:50.995Z</lastmod>
     <data>
@@ -18,21 +38,6 @@
              
               <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://daixinyuxuyisen.cn/2018/08/03/yasi3/</loc>
-    <lastmod>2018-08-03T07:38:20.213Z</lastmod>
-    <data>
-        <display>
-        <title>yasi3</title>
-        <pubTime>2018-08-03T07:38:20.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>

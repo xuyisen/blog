@@ -115,17 +115,18 @@
 
 
 
-  <meta name="description" content="略略略">
+  <meta name="description" content="函数式编程又称泛函编程的一种编程泛型，他将计算机运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是lambda演算。">
+<meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yasi3">
-<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/08/03/yasi3/index.html">
+<meta property="og:title" content="简单克隆代码检测(Scala函数式编程初探)">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/08/30/experment12/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="略略略">
+<meta property="og:description" content="函数式编程又称泛函编程的一种编程泛型，他将计算机运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是lambda演算。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-03T07:38:20.213Z">
+<meta property="og:updated_time" content="2018-08-30T02:24:39.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yasi3">
-<meta name="twitter:description" content="略略略">
+<meta name="twitter:title" content="简单克隆代码检测(Scala函数式编程初探)">
+<meta name="twitter:description" content="函数式编程又称泛函编程的一种编程泛型，他将计算机运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是lambda演算。">
 
 
 
@@ -134,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/08/03/yasi3/"/>
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/08/30/experment12/"/>
 
 
 
@@ -144,7 +145,7 @@
   };
 </script>
 
-  <title>yasi3 | 许宜森的个人博客</title>
+  <title>简单克隆代码检测(Scala函数式编程初探) | 许宜森的个人博客</title>
   
 
 
@@ -372,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/08/03/yasi3/">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/08/30/experment12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="许宜森">
@@ -389,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">yasi3
+          <h1 class="post-title" itemprop="name headline">简单克隆代码检测(Scala函数式编程初探)
               
             
           </h1>
@@ -414,12 +415,34 @@
                 
               
 
-              <time title="创建时间：2018-08-03 15:38:20" itemprop="dateCreated datePublished" datetime="2018-08-03T15:38:20+08:00">2018-08-03</time>
+              <time title="创建时间：2018-08-30 09:44:56 / 修改时间：10:24:39" itemprop="dateCreated datePublished" datetime="2018-08-30T09:44:56+08:00">2018-08-30</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -448,7 +471,53 @@
       
 
       
-        
+        <p>函数式编程又称泛函编程的一种编程泛型，他将计算机运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是lambda演算。    </p>
+<a id="more"></a>   
+<h1 id="命令式编程-lmperative"><a href="#命令式编程-lmperative" class="headerlink" title="命令式编程(lmperative)"></a>命令式编程(lmperative)</h1><p>命令”机器”如何去做事情，这样不管你想要的是什么，他都会按照你的命令实现。   </p>
+<h1 id="函数式编程-functional"><a href="#函数式编程-functional" class="headerlink" title="函数式编程(functional)"></a>函数式编程(functional)</h1><p>告诉”机器”你想要什么，让机器想出如何去做   </p>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><ul>
+<li>Java Code \lmperative  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Integer[] nums = new Integer[]&#123;1, 2, 3, 4&#125;;</span><br><span class="line">int i=0;</span><br><span class="line">for (Integer n : nums) &#123;</span><br><span class="line">    n*=2;</span><br><span class="line">    nums[i++]=n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>遍历整个数组，取出每个元素，乘以二，然后把翻倍后的值放回数组，每次都要操作这个数组，直到计算完所有元素。  </p>
+<ul>
+<li>Scala code \ functional  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val nums = Array(1,2,3,4)</span><br><span class="line">val doubleNums = nums.map(_*2)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>利用Array的map函数，将所有元素<em>2，并生成了一个新的双倍数组。map函数所做的事情是把遍历整个数组的过程，归纳并抽离出来，让我们专注于描述我们想要的是什么”_</em>2”。我们传入map的是一个纯函数；它不具有任何副作用(不会改变外部状态)，它只是接收一个数字，返回乘以二后的值。PS： ‘_’ 字符是scala中的入参缩写形式。  </p>
+<h1 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def max(x: Int, y: Int): Int = &#123;</span><br><span class="line">  if (x &gt; y) x else y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>def 是声明函数的关键字，小括号中的x:Int,y:int是函数的入参，紧跟着的:Int是函数返回值类型，花括号中的是函数体。  </p>
+<h1 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val increment = (x: Int) =&gt; x + 1</span><br><span class="line">increment(2)</span><br><span class="line">// output 3</span><br></pre></td></tr></table></figure>
+<p>匿名函数是指一类无需定义标识符的函数，定义匿名函数的语法很简单，=&gt;箭头左边是参数列表，右边是函数体。可以把命名函数赋值给一个变量使用。<br>另一种方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val increment =new Function1[Int, Int] &#123;</span><br><span class="line">  def apply(x: Int): Int = x + 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="无参匿名函数"><a href="#无参匿名函数" class="headerlink" title="无参匿名函数"></a>无参匿名函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val sayHello = () =&gt; &#123; System.out.print(&quot;Hello World!&quot;) &#125;</span><br><span class="line">sayHello()</span><br><span class="line">//output: Hello World!</span><br></pre></td></tr></table></figure>
+<h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>满足以下条件之一：   </p>
+<ul>
+<li>接受一个或多个函数作为输入  </li>
+<li>输出一个函数  </li>
+</ul>
+<p>在数学领域他们也叫做算子或泛函。微积分中的导数就是常见的例子，它映射一个函数到另一个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val convert2String=(x:Int)=&gt;&quot;==[&quot; + x.toString() + &quot;]==&quot;</span><br><span class="line">def apply(f: Int =&gt; String, v: Int) = f(v)</span><br><span class="line">apply(convert2String,36)</span><br><span class="line">//output: ==[36]==</span><br></pre></td></tr></table></figure></p>
+<h1 id="嵌入式函数-本地函数"><a href="#嵌入式函数-本地函数" class="headerlink" title="嵌入式函数(本地函数)"></a>嵌入式函数(本地函数)</h1><p>在Scala中可以在函数体中再定义一个函数。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def filter(xs: List[Int], threshold: Int) = &#123;</span><br><span class="line">    def process(ys: List[Int]): List[Int] =</span><br><span class="line">    if (ys.isEmpty) ys</span><br><span class="line">    else if (ys.head &lt; threshold) ys.head :: process(ys.tail)</span><br><span class="line">    else process(ys.tail)</span><br><span class="line">    process(xs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="函数柯里化-Currying"><a href="#函数柯里化-Currying" class="headerlink" title="函数柯里化(Currying)"></a>函数柯里化(Currying)</h1><p>在计算机科学中，柯里化是指把接受多个参数的函数变换成接受一个单一参数的函数，并且返回其余的参数和结果的函数。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def curriedSum(x: Int)(y: Int)(z: Int) = x + y + z</span><br><span class="line">val sum = curriedSum(1)(2)(3)</span><br><span class="line">//output: 6</span><br><span class="line"></span><br><span class="line">//the calling procedure of currying function</span><br><span class="line">def first(x: Int) = (y: Int) =&gt; (z: Int) =&gt; x + y + z</span><br><span class="line">def second = first(5)</span><br><span class="line">//output: Int =&gt; (Int =&gt; Int) = 5 + y + z</span><br><span class="line">def third = second(6)</span><br><span class="line">//output: Int =&gt; Int = 5 + 6 + z</span><br><span class="line">val fourth = third(7)</span><br><span class="line">//output: 18</span><br><span class="line"></span><br><span class="line">first(5)(6)(7)</span><br><span class="line">//output: 18</span><br></pre></td></tr></table></figure>
+<p>代码范例中，curriedSum是一个currying函数的Scala写法，而first、second、third、fourth展示了currying函数调用过程。通过代码注释可看到second、third返回的都是函数，直到fourth才返回求和值。而这种特性也正是惰性求值的秘密所在。  </p>
+<h1 id="部分应用函数"><a href="#部分应用函数" class="headerlink" title="部分应用函数"></a>部分应用函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def sum(x: Int, y: Int, z: Int) = &#123;</span><br><span class="line">x + y + z</span><br><span class="line">&#125;</span><br><span class="line">val sum2 = sum(10, _: Int, 15)</span><br><span class="line">sum2(2)</span><br><span class="line">//output: 27</span><br></pre></td></tr></table></figure>
+<h1 id="偏函数"><a href="#偏函数" class="headerlink" title="偏函数"></a>偏函数</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>从输入集合X到可能的输出集合Y的函数f(记作f(X)=&gt;Y)是X与Y的关系，满足如下条件：  </p>
+<ol>
+<li>f是完全的即对于集合X中的任一元素x都有集合Y中的元素y，从而满足f(x)=y,换句话说就是每一个输入值x都有y与之对应。  </li>
+<li>f是多对一的即存在 f(x_{a})=y且f(x_{b})=z并且y=z。也就是多个输入可以映射一个输出，但一个输入不能映射多个输出    </li>
+</ol>
+<p>X与Y的关系f满足条件1，则为<code>多值函数</code>。X与Y的关系f满足条件2，则为<code>偏函数</code>。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">val pf: PartialFunction[Int, String] = &#123;</span><br><span class="line">  case 1 =&gt; &quot;One&quot;</span><br><span class="line">  case 2 =&gt; &quot;Two&quot;</span><br><span class="line">  case 3 =&gt; &quot;Three&quot;</span><br><span class="line">  case 9 =&gt; &quot;Nine&quot;</span><br><span class="line">  case _=&gt; &quot;Nothing&quot;</span><br><span class="line">&#125;</span><br><span class="line">pf(1) // output: One</span><br><span class="line">pf(2) // output: Two</span><br><span class="line">pf(5) // output: Nothing</span><br><span class="line">pf(9) // output: Nine</span><br></pre></td></tr></table></figure>
+<p>示例代码中，我们定义了一个Scala的偏函数，那么只有1、2、3、9有对应的输出值，而输入其它值只会打印 Nothing。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val L1 = List(1, 2, 3, &quot;A&quot;, 4, &quot;B&quot;, 5)</span><br><span class="line">val L2 = L1 map &#123; </span><br><span class="line">case x: Int =&gt; x * x</span><br><span class="line">case x: String =&gt; s&quot;$x*$x&quot;</span><br><span class="line">&#125;</span><br><span class="line">//L2: List[Any] = List(1, 4, 9, A*A, 16, B*B, 25)</span><br></pre></td></tr></table></figure></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>又称函数闭包，是引用了自由变量的函数。这个被引用的自由变量将和这个函数一同存在，换句话说，闭包是由函数和与其相关的引用环境组合成的。<br>另外一种解释，对象是带有函数的数据，闭包是带有数据的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val more = 2</span><br><span class="line">val addMore = (x: Int) =&gt;  x + more</span><br><span class="line">addMore(1)</span><br></pre></td></tr></table></figure></p>
+<h1 id="传值调用函数-call-by-value"><a href="#传值调用函数-call-by-value" class="headerlink" title="传值调用函数(call by value)"></a>传值调用函数(call by value)</h1><p>将未计算的参数表达式直接应用到函数内部即为传名调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def assert(predicate: =&gt; Boolean) =</span><br><span class="line">if (!predicate)</span><br><span class="line">throw new AssertionError</span><br><span class="line">assert(1 &gt; 3)</span><br><span class="line">def compare(x: Int, y: Int): Boolean = &#123;</span><br><span class="line">if (x &gt; y) true else false</span><br><span class="line">&#125;</span><br><span class="line">assert(compare(1, 3))</span><br></pre></td></tr></table></figure></p>
+<h1 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def echo(args:String*)=&#123;</span><br><span class="line">for(arg &lt;- args) println(arg)</span><br><span class="line">&#125;</span><br><span class="line">echo(&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;)</span><br><span class="line">//output: Hello World!</span><br></pre></td></tr></table></figure>
+<h1 id="管道-pipeline-函数"><a href="#管道-pipeline-函数" class="headerlink" title="管道(pipeline)函数"></a>管道(pipeline)函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def even(x:Array[Int]):Array[Int]=&#123;</span><br><span class="line">  x.filter(_%2==0)</span><br><span class="line">&#125;</span><br><span class="line">def square(x:Array[Int]):Array[Int]=&#123;</span><br><span class="line">  x.map(e=&gt;e*e)</span><br><span class="line">&#125;</span><br><span class="line">def total(x:Array[Int]):Int=&#123;</span><br><span class="line">  x.reduce(_+_)</span><br><span class="line">&#125;</span><br><span class="line">val nums = Array(1,2,3,4,5,6,7,8,9,10)</span><br><span class="line">val pipeline = total(square(even(nums)))</span><br><span class="line">//output: 220</span><br></pre></td></tr></table></figure>
+<h1 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def fun(i:Int):Unit=</span><br><span class="line">&#123;</span><br><span class="line">if (i &lt; 10 &amp;&amp; i &gt;= 0)</span><br><span class="line">  &#123;</span><br><span class="line">println(s&quot;i:$i&quot;);</span><br><span class="line">    fun(i + 1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun(1)</span><br></pre></td></tr></table></figure>
+<p>Scala编译器优化了尾递归调用，递归调用和执行一个while循环没有性能上区别。  </p>
+<h1 id="方法与函数"><a href="#方法与函数" class="headerlink" title="方法与函数"></a>方法与函数</h1><p>在Scala中函数如果是某个对象的成员，那么称这种<code>函数</code>为<code>方法</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Sample&#123;</span><br><span class="line">def sayHello():Unit=&#123;</span><br><span class="line">print(&quot;Hello&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -467,12 +536,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/08/03/yasi3/">yasi3</a></p>
+  <p><span>本文标题:</span><a href="/2018/08/30/experment12/">简单克隆代码检测(Scala函数式编程初探)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
-  <p><span>发布时间:</span>2018年08月03日 - 15:08</p>
-  <p><span>最后更新:</span>2018年08月03日 - 15:08</p>
-  <p><span>原始链接:</span><a href="/2018/08/03/yasi3/" title="yasi3">http://daixinyuxuyisen.cn/2018/08/03/yasi3/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/08/03/yasi3/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年08月30日 - 09:08</p>
+  <p><span>最后更新:</span>2018年08月30日 - 10:08</p>
+  <p><span>原始链接:</span><a href="/2018/08/30/experment12/" title="简单克隆代码检测(Scala函数式编程初探)">http://daixinyuxuyisen.cn/2018/08/30/experment12/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/08/30/experment12/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -510,6 +579,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/clone-detection/" rel="tag">clone_detection</a>
+          
+        </div>
+      
 
       
       
@@ -519,8 +594,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/27/paper3/" rel="next" title="《">
-                <i class="fa fa-chevron-left"></i> 《
+              <a href="/2018/08/24/experment11/" rel="next" title="简单克隆代码检测(版本更新及相应bug修复)">
+                <i class="fa fa-chevron-left"></i> 简单克隆代码检测(版本更新及相应bug修复)
               </a>
             
           </div>
@@ -528,10 +603,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/24/experment11/" rel="prev" title="简单克隆代码检测(版本更新及相应bug修复)">
-                简单克隆代码检测(版本更新及相应bug修复) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -727,6 +807,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命令式编程-lmperative"><span class="nav-number">1.</span> <span class="nav-text">命令式编程(lmperative)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程-functional"><span class="nav-number">2.</span> <span class="nav-text">函数式编程(functional)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example"><span class="nav-number">3.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#普通函数"><span class="nav-number">4.</span> <span class="nav-text">普通函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#匿名函数"><span class="nav-number">5.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无参匿名函数"><span class="nav-number">6.</span> <span class="nav-text">无参匿名函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高阶函数"><span class="nav-number">7.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#嵌入式函数-本地函数"><span class="nav-number">8.</span> <span class="nav-text">嵌入式函数(本地函数)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数柯里化-Currying"><span class="nav-number">9.</span> <span class="nav-text">函数柯里化(Currying)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部分应用函数"><span class="nav-number">10.</span> <span class="nav-text">部分应用函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#偏函数"><span class="nav-number">11.</span> <span class="nav-text">偏函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">11.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">12.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传值调用函数-call-by-value"><span class="nav-number">13.</span> <span class="nav-text">传值调用函数(call by value)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变参数"><span class="nav-number">14.</span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道-pipeline-函数"><span class="nav-number">15.</span> <span class="nav-text">管道(pipeline)函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递归函数"><span class="nav-number">16.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法与函数"><span class="nav-number">17.</span> <span class="nav-text">方法与函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -773,7 +869,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.0k字</span>
+  <span class="post-count">博客全站共26.7k字</span>
 </div>
 
         
