@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/09/07/experment14/</loc>
+    <lastmod>2018-09-07T08:34:50.485Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测(程序优化，GPU版本代码的修改)</title>
+        <pubTime>2018-09-07T07:35:04.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/08/30/experment12/</loc>
+    <lastmod>2018-08-30T02:30:32.281Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(Scala函数式编程初探)</title>
+        <pubTime>2018-08-30T01:44:56.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/08/24/experment11/</loc>
+    <lastmod>2018-08-24T09:51:50.995Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(版本更新及相应bug修复)</title>
+        <pubTime>2018-08-24T06:57:27.000Z</pubTime>
+        
+        <tag>clone_dectection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/11/yasi2/</loc>
+    <lastmod>2018-08-02T03:23:31.789Z</lastmod>
+    <data>
+        <display>
+        <title>雅思阅读知识点</title>
+        <pubTime>2018-07-11T11:18:13.000Z</pubTime>
+        
+        <tag>阅读</tag>
+         
+         
+           
+             
+              <breadCrumb title="雅思" url="http://daixinyuxuyisen.cn/categories/%E9%9B%85%E6%80%9D/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/20/parper2/</loc>
+    <lastmod>2018-07-20T06:47:02.567Z</lastmod>
+    <data>
+        <display>
+        <title>《Automatic Generation of Text Descriptive Comments for Code Blocks》阅读笔记</title>
+        <pubTime>2018-07-20T04:09:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="论文阅读笔记" url="http://daixinyuxuyisen.cn/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/13/experment10/</loc>
+    <lastmod>2018-07-13T10:53:42.816Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(函数式语言简略分析)</title>
+        <pubTime>2018-07-13T09:38:39.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/11/experment9/</loc>
+    <lastmod>2018-07-11T05:19:35.623Z</lastmod>
+    <data>
+        <display>
+        <title>简单克隆代码检测(实验数据对比)</title>
+        <pubTime>2018-07-11T02:14:46.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/06/experment8/</loc>
+    <lastmod>2018-07-11T02:17:26.669Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测七(数据分析)</title>
+        <pubTime>2018-07-06T10:08:58.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/07/04/jiwangfuxi/</loc>
+    <lastmod>2018-07-06T10:11:57.937Z</lastmod>
+    <data>
+        <display>
+        <title>计算机网络复习提纲</title>
+        <pubTime>2018-07-04T09:30:44.000Z</pubTime>
+        
+        <tag>学科复习</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://daixinyuxuyisen.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/30/shujujiegou/</loc>
+    <lastmod>2018-07-05T07:24:22.461Z</lastmod>
+    <data>
+        <display>
+        <title>数据结构复习</title>
+        <pubTime>2018-06-30T02:10:49.000Z</pubTime>
+        
+        <tag>数据结构</tag>
+         
+         
+           
+             
+              <breadCrumb title="学科复习" url="http://daixinyuxuyisen.cn/categories/%E5%AD%A6%E7%A7%91%E5%A4%8D%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/13/experment4/</loc>
+    <lastmod>2018-07-05T06:18:37.289Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测(三)(精简数据)</title>
+        <pubTime>2018-06-13T12:36:28.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/20/experment5/</loc>
+    <lastmod>2018-07-05T05:53:06.478Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测(四)(提取二进制数据)</title>
+        <pubTime>2018-06-20T12:32:53.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/12/experment3/</loc>
+    <lastmod>2018-07-05T05:52:54.830Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测二(AST node)</title>
+        <pubTime>2018-06-12T08:49:10.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/10/experment2/</loc>
+    <lastmod>2018-07-05T05:52:48.366Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测一(AST leaf)</title>
+        <pubTime>2018-06-10T09:56:28.000Z</pubTime>
+        
+        <tag>code_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/09/experment1/</loc>
+    <lastmod>2018-07-05T05:52:41.164Z</lastmod>
+    <data>
+        <display>
+        <title>AST树提取进展</title>
+        <pubTime>2018-06-09T12:55:53.000Z</pubTime>
+        
+        <tag>AST</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/01/software-review/</loc>
+    <lastmod>2018-07-04T09:43:23.841Z</lastmod>
+    <data>
+        <display>
+        <title>软件工程复习提纲</title>
+        <pubTime>2018-06-01T02:10:54.392Z</pubTime>
+        
+        <tag>软件工程</tag>
+         
+         
+           
+             
+              <breadCrumb title="学科复习" url="http://daixinyuxuyisen.cn/categories/%E5%AD%A6%E7%A7%91%E5%A4%8D%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/30/xianxingdaishu/</loc>
+    <lastmod>2018-06-30T08:44:26.612Z</lastmod>
+    <data>
+        <display>
+        <title>线性代数复习</title>
+        <pubTime>2018-06-30T08:42:39.000Z</pubTime>
+        
+        <tag>线性代数</tag>
+         
+         
+           
+             
+              <breadCrumb title="学科复习" url="http://daixinyuxuyisen.cn/categories/%E5%AD%A6%E7%A7%91%E5%A4%8D%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/29/experment7/</loc>
+    <lastmod>2018-06-29T09:40:18.414Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆代码检测(六)(克隆工具第一版本)</title>
+        <pubTime>2018-06-29T08:32:56.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/26/paper1/</loc>
+    <lastmod>2018-06-27T07:25:16.723Z</lastmod>
+    <data>
+        <display>
+        <title>《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记</title>
+        <pubTime>2018-06-26T01:54:01.000Z</pubTime>
+        
+        <tag>clone detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="论文阅读笔记" url="http://daixinyuxuyisen.cn/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/22/experment6/</loc>
+    <lastmod>2018-06-22T10:24:34.682Z</lastmod>
+    <data>
+        <display>
+        <title>简单代码克隆检测(五)(控制流特征的提取)</title>
+        <pubTime>2018-06-22T09:35:26.000Z</pubTime>
+        
+        <tag>clone_detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/13/yasi1/</loc>
+    <lastmod>2018-06-21T07:10:15.530Z</lastmod>
+    <data>
+        <display>
+        <title>雅思训练错题整理</title>
+        <pubTime>2018-06-13T05:17:33.000Z</pubTime>
+        
+        <tag>雅思听力</tag>
+         
+         
+           
+             
+              <breadCrumb title="英语" url="http://daixinyuxuyisen.cn/categories/%E8%8B%B1%E8%AF%AD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/08/AST/</loc>
+    <lastmod>2018-06-09T14:12:10.833Z</lastmod>
+    <data>
+        <display>
+        <title>AST</title>
+        <pubTime>2018-06-08T01:42:52.000Z</pubTime>
+        
+        <tag>AST</tag>
+         
+         
+           
+             
+              <breadCrumb title="Scala" url="http://daixinyuxuyisen.cn/categories/Scala/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://daixinyuxuyisen.cn/2018/06/06/daily1/</loc>
+    <lastmod>2018-06-06T12:20:44.541Z</lastmod>
+    <data>
+        <display>
+        <title>日记</title>
+        <pubTime>2018-06-06T12:01:21.000Z</pubTime>
+        
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="日记" url="http://daixinyuxuyisen.cn/categories/%E6%97%A5%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>
