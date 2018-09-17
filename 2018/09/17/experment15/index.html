@@ -115,30 +115,25 @@
 
 
 
-  <meta name="description" content="本文主要介绍利用soot工具提取class文件中的cfg特征，并通过GEM(graph embedding Method)来求流程图之间的相似性。">
+  <meta name="description" content="这周主要按照上次开会的内容作了两个实验，第一个是统计20个github上star最多的scala项目中高阶函数的使用情况，第二个是借助github api 查看高阶函数所在文件的创建和修改的人时候固定。">
 <meta name="keywords" content="clone_detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单代码克隆检测(五)(控制流特征的提取)">
-<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/06/22/experment6/index.html">
+<meta property="og:title" content="简单代码克隆检测(经验性分析初版)">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/09/17/experment15/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
-<meta property="og:description" content="本文主要介绍利用soot工具提取class文件中的cfg特征，并通过GEM(graph embedding Method)来求流程图之间的相似性。">
+<meta property="og:description" content="这周主要按照上次开会的内容作了两个实验，第一个是统计20个github上star最多的scala项目中高阶函数的使用情况，第二个是借助github api 查看高阶函数所在文件的创建和修改的人时候固定。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/45.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/46.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/47.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/48a.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/48b.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/49.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/50.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/51.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/52.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/53.png">
-<meta property="og:image" content="http://daixinyuxuyisen.cn/images/54.png">
-<meta property="og:updated_time" content="2018-06-22T10:24:34.682Z">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/133.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/134.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/135.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/136.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/137.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/138.png">
+<meta property="og:updated_time" content="2018-09-17T10:17:07.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单代码克隆检测(五)(控制流特征的提取)">
-<meta name="twitter:description" content="本文主要介绍利用soot工具提取class文件中的cfg特征，并通过GEM(graph embedding Method)来求流程图之间的相似性。">
-<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/45.png">
+<meta name="twitter:title" content="简单代码克隆检测(经验性分析初版)">
+<meta name="twitter:description" content="这周主要按照上次开会的内容作了两个实验，第一个是统计20个github上star最多的scala项目中高阶函数的使用情况，第二个是借助github api 查看高阶函数所在文件的创建和修改的人时候固定。">
+<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/133.png">
 
 
 
@@ -147,7 +142,7 @@
 
 
 
-  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/06/22/experment6/"/>
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/09/17/experment15/"/>
 
 
 
@@ -157,7 +152,7 @@
   };
 </script>
 
-  <title>简单代码克隆检测(五)(控制流特征的提取) | 许宜森的个人博客</title>
+  <title>简单代码克隆检测(经验性分析初版) | 许宜森的个人博客</title>
   
 
 
@@ -385,7 +380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/06/22/experment6/">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/09/17/experment15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="许宜森">
@@ -402,7 +397,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单代码克隆检测(五)(控制流特征的提取)
+          <h1 class="post-title" itemprop="name headline">简单代码克隆检测(经验性分析初版)
               
             
           </h1>
@@ -427,7 +422,7 @@
                 
               
 
-              <time title="创建时间：2018-06-22 17:35:26 / 修改时间：18:24:34" itemprop="dateCreated datePublished" datetime="2018-06-22T17:35:26+08:00">2018-06-22</time>
+              <time title="创建时间：2018-09-17 14:38:24 / 修改时间：18:17:07" itemprop="dateCreated datePublished" datetime="2018-09-17T14:38:24+08:00">2018-09-17</time>
             
 
             
@@ -483,13 +478,29 @@
       
 
       
-        <p>本文主要介绍利用soot工具提取class文件中的cfg特征，并通过GEM(graph embedding Method)来求流程图之间的相似性。</p>
+        <p>这周主要按照上次开会的内容作了两个实验，第一个是统计20个github上star最多的scala项目中高阶函数的使用情况，第二个是借助github api 查看高阶函数所在文件的创建和修改的人时候固定。   </p>
 <a id="more"></a>
-<h1 id="实验背景："><a href="#实验背景：" class="headerlink" title="实验背景："></a>实验背景：</h1><h2 id="实验原理："><a href="#实验原理：" class="headerlink" title="实验原理："></a>实验原理：</h2><p>按照论文中的描述，提取代码的第三个特征是CFG(控制流图的特征)，而且这个特征的提取和利用跟前几个特征不太一样：<br><img src="/images/45.png" alt="图片描述"><br>文中说<code>identifier</code>,<code>AST</code>,<code>bytecode</code>representations,用的是之前我们介绍的<code>autoencoder</code>,而<code>CFG</code>用的是图形的<code>embedding</code></p>
-<h1 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a>实验步骤：</h1><h2 id="使用soot工具获取dot文件："><a href="#使用soot工具获取dot文件：" class="headerlink" title="使用soot工具获取dot文件："></a>使用soot工具获取dot文件：</h2><p>使用soot工具对class文件进行解析的时候，一直出错，不是class找不到，就是名字不对应，不管是cmd命令行还是编写程序调用都会出现很多的问题，最终还是采用了文档中不推荐使用的方法，加上参数<code>–allow-phantom-refs</code>,最终是能够解析一个单独的文件，在进行对整个文件夹解析的时候，前面进行都很顺利，在中间出了错，不能继续向下解析了，此时我们已经得到了1w多个文件：<br>解析出来的文件：<br><img src="/images/46.png" alt="图片描述"><br>随便打开一个文件查看里面的内容：<br><img src="/images/47.png" alt="图片描述"><br>利用<code>graphviz</code>生成<code>png</code>图片：<br><img src="/images/48a.png" alt="图片描述"><br><img src="/images/48b.png" alt="图片描述">    </p>
-<h2 id="处理dot文件，生成指定格式的训练数据："><a href="#处理dot文件，生成指定格式的训练数据：" class="headerlink" title="处理dot文件，生成指定格式的训练数据："></a>处理dot文件，生成指定格式的训练数据：</h2><p>观察论文作者提供的数据我们可以发现，他只提取了dot 文件中的顶点和顶点的关系，顶点的定义并没有提取，所以我就写了一个处理程序，提取指定字符串。<br>论文作者提供的数据：<br><img src="/images/49.png" alt="图片描述"><br>提取的代码部分截图：<br><img src="/images/50.png" alt="图片描述"><br>这里说一下，为了更加符合项目实际的要求，我把所有小于1k的数据基本上都排除了，留下来的基本上都是可以进行试验的数据，而且和bytecode提取的函数基本上一直，因为二者都是对class文件进行操作的。<br>对文件进行筛选：<br><img src="/images/51.png" alt="图片描述"><br>最终得到的数据形式：<br><img src="/images/52.png" alt="图片描述"><br>共1400多条数据  </p>
-<h2 id="将生成的数据输入到GEM中得到距离矩阵："><a href="#将生成的数据输入到GEM中得到距离矩阵：" class="headerlink" title="将生成的数据输入到GEM中得到距离矩阵："></a>将生成的数据输入到GEM中得到距离矩阵：</h2><p>这里我直接调用了论文作者给的代码，但其中有一个参数并没有给出具体的值，就是<code>embedding size</code>,我暂时先设置成10，运行的过程因为需要各种神经网络的包，所以我直接在贾老师的服务器上跑了一下：<br>GEM:<br><img src="/images/53.png" alt="图片描述"><br>最终跑出来的距离矩阵：<br><img src="/images/54.png" alt="图片描述"><br>这次跑出来的结果我并没有时间进行统计，之前直接在MATLAB中进行操作就可以得到相似度很高的克隆对，这次是文件，还需要另外写代码，思路基本上都是一样的，所以基本上都可以实现查找相似的克隆对。</p>
-<h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><p>这次实验中遇到的最大的困难就是<code>soot</code>工具的使用，大概断断续续用了2天来进行这个cfg解析，关键还是要看他给的文档，除了普遍的方法，也要尝试一些极端的方法，由于我对最终的结果没有进行统计，所以不能直接说明这个特征对代码克隆的判断有什么影响，但是从目前的数据来说，发现有大量的相同的数据，但是他们的代码并不类似，而且绝大多数的方法的结构是顺序结构，也就是我们前面展示的第一种，所以只要语句的个数相同就能被判断完全相同，我感觉最主要的依赖的representation还是<code>AST</code>和<code>identifier</code>。</p>
+<h2 id="提取高阶函数"><a href="#提取高阶函数" class="headerlink" title="提取高阶函数"></a>提取高阶函数</h2><p>这一步就是在之前构造AST的代码上做进一步进行修改。之前博客中提到高阶函数的定义：<br>满足以下条件之一：   </p>
+<ul>
+<li>接受一个或多个函数作为输入  </li>
+<li>输出一个函数    </li>
+</ul>
+<p>就是高阶函数：   </p>
+<p>但是由于scala 函数默认最后一句话为返回值，且利用工具scala-mate查看不出最后一句话的类型，所以我只能从传入的是个函数这个判断条件来进行提取数据。<br>高阶函数示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def sum(f:Int=&gt;Int):(Int,Int)=&gt;Int=&#123;</span><br><span class="line">       def sumF(a:Int,b:Int):Int=</span><br><span class="line">         if(a&gt;b) 0</span><br><span class="line">         else f(a)+sumF(a+1,b)</span><br><span class="line">       sumF</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>构造的AST树：<br><img src="/images/133.png" alt="图片描述">  </p>
+<p>所以只要判断函数的参数里面有函数的类型即<code>Type.Function</code>即可，所以修改后的代码如下：<br><img src="/images/134.png" alt="图片描述">  </p>
+<p>接下来就是git clone 20个项目，跑实验，统计每个项目中高阶函数的个数，统计结果如下：  </p>
+<p>20个项目选取的网址：<a href="https://github.com/search?l=Scala&amp;o=desc&amp;p=1&amp;q=scala&amp;s=stars&amp;type=Repositories" target="_blank" rel="noopener">https://github.com/search?l=Scala&amp;o=desc&amp;p=1&amp;q=scala&amp;s=stars&amp;type=Repositories</a>  </p>
+<p><img src="/images/135.png" alt="图片描述">   </p>
+<p>通过观察实验结果可以发现，高阶函数占比并不是很高，除了<code>fpinscala</code>,<code>scalaz</code>,<code>sbt</code> 三个项目占比较高外，其他项目都低于10%。说明高阶函数的普及型并不是很高。   </p>
+<h2 id="获取commit信息"><a href="#获取commit信息" class="headerlink" title="获取commit信息"></a>获取commit信息</h2><p>通过github api 获取文件的commit信息，很简单，就直接写了一个python 函数，统计了每个项目每个高阶函数所在文件的commit的历史作者和最早提交的作者。   </p>
+<p>提取函数的代码链接：<a href="https://gitee.com/iss2015302580249/scalaCommitInfo" target="_blank" rel="noopener">https://gitee.com/iss2015302580249/scalaCommitInfo</a>  </p>
+<p>在提取commit的信息的时候遇到了一个问题，就是提取账户名的时候，会有不存在的现象，也就是  <code>login</code>字段为空，我感觉应该是账户已经注销了，所以我提取的是commit里面的<code>author</code>字段的信息，也就是用户姓名的信息。   </p>
+<p><img src="/images/136.png" alt="图片描述">   </p>
+<p>最终的统计结果：<br><img src="/images/137.png" alt="图片描述">   </p>
+<p>通过实验结果我们可以看出，高阶函数所在文件创始者总数占比也很低，但是我们不能确定，文件的创始者就是高阶函数的创始者，这一点有待讨论和解决：    </p>
+<p><code>实验最终数据链接：https://gitee.com/iss2015302580249/scala_data</code>  </p>
+<p><img src="/images/138.png" alt="图片描述"> </p>
 
       
     </div>
@@ -509,12 +520,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/06/22/experment6/">简单代码克隆检测(五)(控制流特征的提取)</a></p>
+  <p><span>本文标题:</span><a href="/2018/09/17/experment15/">简单代码克隆检测(经验性分析初版)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
-  <p><span>发布时间:</span>2018年06月22日 - 17:06</p>
-  <p><span>最后更新:</span>2018年06月22日 - 18:06</p>
-  <p><span>原始链接:</span><a href="/2018/06/22/experment6/" title="简单代码克隆检测(五)(控制流特征的提取)">http://daixinyuxuyisen.cn/2018/06/22/experment6/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/06/22/experment6/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年09月17日 - 14:09</p>
+  <p><span>最后更新:</span>2018年09月17日 - 18:09</p>
+  <p><span>原始链接:</span><a href="/2018/09/17/experment15/" title="简单代码克隆检测(经验性分析初版)">http://daixinyuxuyisen.cn/2018/09/17/experment15/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/09/17/experment15/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -567,8 +578,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/20/experment5/" rel="next" title="简单代码克隆检测(四)(提取二进制数据)">
-                <i class="fa fa-chevron-left"></i> 简单代码克隆检测(四)(提取二进制数据)
+              <a href="/2018/09/07/experment14/" rel="next" title="简单代码克隆检测(程序优化，GPU版本代码的修改)">
+                <i class="fa fa-chevron-left"></i> 简单代码克隆检测(程序优化，GPU版本代码的修改)
               </a>
             
           </div>
@@ -576,10 +587,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/26/paper1/" rel="prev" title="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
-                《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -793,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验背景："><span class="nav-number">1.</span> <span class="nav-text">实验背景：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验原理："><span class="nav-number">1.1.</span> <span class="nav-text">实验原理：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验步骤："><span class="nav-number">2.</span> <span class="nav-text">实验步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用soot工具获取dot文件："><span class="nav-number">2.1.</span> <span class="nav-text">使用soot工具获取dot文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理dot文件，生成指定格式的训练数据："><span class="nav-number">2.2.</span> <span class="nav-text">处理dot文件，生成指定格式的训练数据：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将生成的数据输入到GEM中得到距离矩阵："><span class="nav-number">2.3.</span> <span class="nav-text">将生成的数据输入到GEM中得到距离矩阵：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">3.</span> <span class="nav-text">实验总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#提取高阶函数"><span class="nav-number">1.</span> <span class="nav-text">提取高阶函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取commit信息"><span class="nav-number">2.</span> <span class="nav-text">获取commit信息</span></a></li></ol></div>
             
 
           </div>
