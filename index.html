@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-08 22:31:35" itemprop="dateModified" datetime="2018-10-08T22:31:35+08:00">2018-10-08</time>
+                <time title="修改时间：2018-10-08 23:09:10" itemprop="dateModified" datetime="2018-10-08T23:09:10+08:00">2018-10-08</time>
               
             
           </span>
@@ -487,35 +487,14 @@
 
       
         
-          
-            <p>本周由于雅思笔试，口试延误了很长时间，所以实验做的比较晚。这周主要完成了对scala的一个项目项目的详细统计，统计结果包括高阶函数声明数，高阶函数调用数，以及这两者有什么关系；scala文档对高阶函数的定义；统计泛化功能高阶函数；最后自己总结了一点高阶函数的特点。   </p>
-<h2 id="高阶函数声明与调用"><a href="#高阶函数声明与调用" class="headerlink" title="高阶函数声明与调用"></a>高阶函数声明与调用</h2><p>上次实验我主要统计了所有的scala项目的高阶函数声明的数量，并没有对其调用进行统计，而且后来才发现我只统计了那些函数行数大于10行的函数，所以这次实验要重新进行统计。<br>这次实验选取的项目为跑<code>playframework</code>:<br><code>playframework</code>是一个full-stack（全栈的） Web的应用框架，包括一个简单的无状态MVC模型，具有Hibernate的对象持续，一个基于Groovy的模板引擎，以及建立一个现代Web应用所需的所有东西。而且<code>playframework</code>是star最多的一个scala项目。<br>实验步骤： </p>
-<ul>
-<li>提取数据：在提取数据的过程中发现，函数声明可以利用代码快速提取出来，但是函数调用并不能利用之前的工具提取，因为scalameta并不能像java中的JDT那样对整个项目进行分析，只能每次对一个文件进行解析，只是分析函数中的词法和语法，并不能分析出来函数调用这种语义信息，所以我就手动统计了每个函数的调用关系。方法是提取所有的函数，与高阶函数的名称一一对比，再进行原函数一一查看。   </li>
-<li>统计数据：在提取完函数声明和函数调用数据后，我对这些数据进行了简单的统计：<br><img src="/images/139.png" alt="图片描述"><br><img src="/images/140.png" alt="图片描述"><br>这里说明一下，在统计所有的高阶函数里面，并不是所有的都能找到调用关系，而且有些函数都是一些重构或者构造函数，在这里我没有统计这些函数的调用。如：<br><img src="/images/141.png" alt="图片描述"><br>像<code>apply,map</code>这样的函数，在高阶函数里面就有很多，在所有函数里面搜索关键字就有几百条。  </li>
-<li>分析数据：我们已经知道了函数声明和调用具体的数量了，接下来就是统计二者到底有啥关系了：<br>通过统计分析发现大多数高阶函数的调用和声明都在同一个文件中：<br><img src="/images/142.png" alt="图片描述">   <ul>
-<li>在一个文件中的函数调用：<br><img src="/images/143.png" alt="图片描述"><br><img src="/images/144.png" alt="图片描述"><br><img src="/images/145.png" alt="图片描述">  </li>
-<li>不在同一个文件<br><img src="/images/146.png" alt="图片描述"><br><img src="/images/147.png" alt="图片描述"><br><img src="/images/148.png" alt="图片描述"><br><img src="/images/149.png" alt="图片描述">  </li>
-</ul>
-</li>
-</ul>
-<h2 id="高阶函数声明-amp-调用作者分析"><a href="#高阶函数声明-amp-调用作者分析" class="headerlink" title="高阶函数声明&amp;调用作者分析"></a>高阶函数声明&amp;调用作者分析</h2><p>前面我们统计了一个项目中的高阶函数的分布，发现大多数函数声明和调用都发生在同一个文件中，所以我就打算统计一下那些没有在同一个文件中的高阶函数的声明和调用是不是同一个作者。<br>所有的作者信息：<br><img src="/images/150.png" alt="图片描述"><br>最先创建文件作者信息：<br><img src="/images/151.png" alt="图片描述"><br>只有三对的初始化作者是相同的，其余作者都不相同。</p>
-<h2 id="scala-文档中有关高阶函数的解释"><a href="#scala-文档中有关高阶函数的解释" class="headerlink" title="scala 文档中有关高阶函数的解释"></a>scala 文档中有关高阶函数的解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Higher order functions take other functions as parameters or return a function as a result. This is possible because functions are first-class values in Scala. The terminology can get a bit confusing at this point, and we use the phrase “higher order function” for both methods and functions that take functions as parameters or that return a function.</span><br></pre></td></tr></table></figure>
-<p>也就是之前我们说的高阶函数的定义，没有说明为什么要用高阶函数。<br>但在另一个scala-exercise网站上举了一个例子：<a href="https://www.scala-exercises.org/scala_tutorial/higher_order_functions" target="_blank" rel="noopener">https://www.scala-exercises.org/scala_tutorial/higher_order_functions</a>  </p>
-<p><img src="/images/152.png" alt="图片描述"><br><img src="/images/153.png" alt="图片描述"><br><img src="/images/153.png" alt="图片描述">  </p>
-<p>总结：使用高阶函数可以减少代码，尤其是在比较复杂的流程中，这类似于Strategy模式，将核心算法整体替换，整个架构不变，比如一个有不同水平的棋类游戏，高阶函数的让这个实现更简单。  </p>
-<h2 id="scala-高阶函数调用"><a href="#scala-高阶函数调用" class="headerlink" title="scala 高阶函数调用"></a>scala 高阶函数调用</h2><p>调用函数的类型：  </p>
-<ul>
-<li>函数参数就在高阶函数附近：<br><img src="/images/155.png" alt="图片描述">  </li>
-<li>函数参数就在函数调用中编写：<br><img src="/images/156.png" alt="图片描述"><br><img src="/images/157.png" alt="图片描述">  </li>
-<li>函数参数来自上一级函数的参数<br><img src="/images/159.png" alt="图片描述"><br><img src="/images/160.png" alt="图片描述">  </li>
-<li>函数参数是对象的一个方法<br><img src="/images/158.png" alt="图片描述">  </li>
-</ul>
-<p>经过我粗略的统计，发现上面四中使用方法中，第一种使用的最少，使用最多的是第三种和第四种，函数参数就在函数调用中编写的情况处于两者之间，但是比第一种多很多。   </p>
-<h2 id="高阶函数的泛化"><a href="#高阶函数的泛化" class="headerlink" title="高阶函数的泛化"></a>高阶函数的泛化</h2><p>之前所说的高阶函数的主要目的就是简化代码，然后抽象化。在项目统计高阶函数数据时，我发现很多高阶函数在参数面前都有一个[T],这根我们之前c++中的template<t>的功能相同，提供模板。<br><img src="/images/161.png" alt="图片描述">   </t></p>
-<p>而且在所统计的数据中，模板高阶函数还占有很大的比重，</p>
-
-          
+          <p>本周由于雅思笔试，口试延误了很长时间，所以实验做的比较晚。这周主要完成了对scala的一个项目项目的详细统计，统计结果包括高阶函数声明数，高阶函数调用数，以及这两者有什么关系；scala文档对高阶函数的定义；统计泛化功能高阶函数；最后自己总结了一点高阶函数的特点。  </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/06/experiment15/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2328,7 +2307,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.6k字</span>
+  <span class="post-count">博客全站共29.7k字</span>
 </div>
 
         
