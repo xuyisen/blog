@@ -118,7 +118,7 @@
   <meta name="description" content="本周主要继续之前设计的实验，本打算在一个星期内做完所有实验，结果发现里面有很多问题。">
 <meta name="keywords" content="scala 高阶函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高阶函数初探(二)">
+<meta property="og:title" content="高阶函数初探(三)">
 <meta property="og:url" content="http://daixinyuxuyisen.cn/2018/10/25/experiment16/index.html">
 <meta property="og:site_name" content="许宜森的个人博客">
 <meta property="og:description" content="本周主要继续之前设计的实验，本打算在一个星期内做完所有实验，结果发现里面有很多问题。">
@@ -141,9 +141,9 @@
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/173.png">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/174.png">
 <meta property="og:image" content="http://daixinyuxuyisen.cn/images/175.png">
-<meta property="og:updated_time" content="2018-10-25T12:15:45.879Z">
+<meta property="og:updated_time" content="2018-10-25T12:20:42.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高阶函数初探(二)">
+<meta name="twitter:title" content="高阶函数初探(三)">
 <meta name="twitter:description" content="本周主要继续之前设计的实验，本打算在一个星期内做完所有实验，结果发现里面有很多问题。">
 <meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/162.png">
 
@@ -164,7 +164,7 @@
   };
 </script>
 
-  <title>高阶函数初探(二) | 许宜森的个人博客</title>
+  <title>高阶函数初探(三) | 许宜森的个人博客</title>
   
 
 
@@ -409,7 +409,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">高阶函数初探(二)
+          <h1 class="post-title" itemprop="name headline">高阶函数初探(三)
               
             
           </h1>
@@ -434,7 +434,7 @@
                 
               
 
-              <time title="创建时间：2018-10-25 18:36:11 / 修改时间：20:15:45" itemprop="dateCreated datePublished" datetime="2018-10-25T18:36:11+08:00">2018-10-25</time>
+              <time title="创建时间：2018-10-25 18:36:11 / 修改时间：20:20:42" itemprop="dateCreated datePublished" datetime="2018-10-25T18:36:11+08:00">2018-10-25</time>
             
 
             
@@ -531,10 +531,8 @@
 </li>
 </ul>
 <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ul>
-<li>scala meta 无法提取出函数调用，scala meta提供了相关的工具 SemanticDB，顾名思义语义数据库，也就是在程序编译的时候将各种方法符号写进他自己定义的数据库中，但是针对一些简单的程序，加了这个组件是没问题，但是针对一些较大的程序，加了组件编译不通过，无法得到数据库。 <a href="https://scalameta.org/docs/semanticdb/guide.html" target="_blank" rel="noopener">https://scalameta.org/docs/semanticdb/guide.html</a><br>还有就是前两天，看之前写的异常处理的程序的时候，还可以利用jar包来解析调用关系，但是还没有尝试，我在提取作者的时候需要文件路径和方法名，不知最后能不能提供出来。还有就是我觉得除了前三个项目的scala项目高阶函数较多，其他的项目相对较少，手动统计工作量也不是很巨大，我一般就是将项目导入Idea，然后find usage查找调用。<br><img src="/images/175.png" alt="图片描述">  <ul>
+<li>scala meta 无法提取出函数调用，scala meta提供了相关的工具 SemanticDB，顾名思义语义数据库，也就是在程序编译的时候将各种方法符号写进他自己定义的数据库中，但是针对一些简单的程序，加了这个组件是没问题，但是针对一些较大的程序，加了组件编译不通过，无法得到数据库。 <a href="https://scalameta.org/docs/semanticdb/guide.html" target="_blank" rel="noopener">https://scalameta.org/docs/semanticdb/guide.html</a><br>还有就是前两天，看之前写的异常处理的程序的时候，还可以利用jar包来解析调用关系，但是还没有尝试，我在提取作者的时候需要文件路径和方法名，不知最后能不能提供出来。还有就是我觉得除了前三个项目的scala项目高阶函数较多，其他的项目相对较少，手动统计工作量也不是很巨大，我一般就是将项目导入Idea，然后find usage查找调用。<br><img src="/images/175.png" alt="图片描述">  </li>
 <li>遇到的第二个问题就是提取作者的时候，我的思路是通过<code>git log -p&gt; **.txt</code>的命令首先将所有的commit的信息生成文件，然后对文件中的字符串进行切割，预处理，搜索，查找我们制定的作者，但是有时候这个文件又特别大，很占内存，读的时候很慢，实验也就卡在这里了，我也尝试了其他读取文件的方法，效果不是很好，另外，java提供了jGit这个工具，可以允许你用java代码调用git接口，但是我找到了git.log()这个api,但是得到的东西很少，没有包含每次提交添加了什么代码，也就是没有命令行里面<code>-p</code>的选项。   </li>
-</ul>
-</li>
 </ul>
 <h2 id="下周的工作"><a href="#下周的工作" class="headerlink" title="下周的工作"></a>下周的工作</h2><p>针对上面的问题，继续寻找解决方法，增加项目数量，继续统计数据。</p>
 
@@ -556,11 +554,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/10/25/experiment16/">高阶函数初探(二)</a></p>
+  <p><span>本文标题:</span><a href="/2018/10/25/experiment16/">高阶函数初探(三)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
   <p><span>发布时间:</span>2018年10月25日 - 18:10</p>
   <p><span>最后更新:</span>2018年10月25日 - 20:10</p>
-  <p><span>原始链接:</span><a href="/2018/10/25/experiment16/" title="高阶函数初探(二)">http://daixinyuxuyisen.cn/2018/10/25/experiment16/</a>
+  <p><span>原始链接:</span><a href="/2018/10/25/experiment16/" title="高阶函数初探(三)">http://daixinyuxuyisen.cn/2018/10/25/experiment16/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/10/25/experiment16/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
