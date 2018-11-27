@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon2.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon1.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="原文链接： https://link.springer.com/content/pdf/10.1007%2Fs10664-018-9622-9.pdf作者：MSebastian Nielebock，Robert Heumüller，Frank Ortmeier文章来源： Empir Software Eng 2018简介： 本文针对lambda expression，提出了concurrent a">
+<meta name="keywords" content="Lambda expression  Concurrency">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
+<meta property="og:url" content="http://daixinyuxuyisen.cn/2018/11/27/paper3/index.html">
+<meta property="og:site_name" content="许宜森的个人博客">
+<meta property="og:description" content="原文链接： https://link.springer.com/content/pdf/10.1007%2Fs10664-018-9622-9.pdf作者：MSebastian Nielebock，Robert Heumüller，Frank Ortmeier文章来源： Empir Software Eng 2018简介： 本文针对lambda expression，提出了concurrent a">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/191.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/190.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/192.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/193.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/194.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/195.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/196.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/197.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/198.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/199.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/200.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/201.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/202.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/203.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/204.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/205.png">
+<meta property="og:image" content="http://daixinyuxuyisen.cn/images/206.png">
+<meta property="og:updated_time" content="2018-11-27T14:28:15.706Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">
+<meta name="twitter:description" content="原文链接： https://link.springer.com/content/pdf/10.1007%2Fs10664-018-9622-9.pdf作者：MSebastian Nielebock，Robert Heumüller，Frank Ortmeier文章来源： Empir Software Eng 2018简介： 本文针对lambda expression，提出了concurrent a">
+<meta name="twitter:image" content="http://daixinyuxuyisen.cn/images/191.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="许宜森的个人博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://daixinyuxuyisen.cn/2018/11/27/paper3/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记 | 许宜森的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/xuyisen" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">许宜森的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">机器学习|深度学习|软件工程</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tag">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />tag</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404.html" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />公益 404</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://daixinyuxuyisen.cn/2018/11/27/paper3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="许宜森">
+      <meta itemprop="description" content="略略略">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="许宜森的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-27 19:58:51 / 修改时间：22:28:15" itemprop="dateCreated datePublished" datetime="2018-11-27T19:58:51+08:00">2018-11-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文阅读笔记/" itemprop="url" rel="index"><span itemprop="name">论文阅读笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接： <a href="https://link.springer.com/content/pdf/10.1007%2Fs10664-018-9622-9.pdf" target="_blank" rel="noopener">https://link.springer.com/content/pdf/10.1007%2Fs10664-018-9622-9.pdf</a><br>作者：MSebastian Nielebock，Robert Heumüller，Frank Ortmeier<br>文章来源： Empir Software Eng 2018<br>简介： 本文针对<code>lambda expression</code>，提出了<code>concurrent applications</code>与<code>lambda expression</code>可能存在一定联系，并通过一系列实验和实验数据的分析验证了自己的观点。  </p>
+<a id="more"></a>  
+<h2 id="Motivation-and-Research-Questions"><a href="#Motivation-and-Research-Questions" class="headerlink" title="Motivation and Research Questions"></a>Motivation and Research Questions</h2><p><code>lambda expressions</code>有很优越性，它允许声明匿名函数，能够更容易将行为转化为程序组件。在一些纯(purity)表达式中，能够保证代码没有副作用等等，这些好处推动了程序员更加广泛的使用<code>lambda expressions</code>。</p>
+<h3 id="前人主要研究的问题"><a href="#前人主要研究的问题" class="headerlink" title="前人主要研究的问题"></a>前人主要研究的问题</h3><p><code>Järvi and Freeman 2010; Gyori et al. 2013</code> 等人在自己的论文中声明了<code>lambda expressions</code>的几个优点或者影响即：  </p>
+<ul>
+<li>减少了代码数量</li>
+<li>促进了并行应用的发展</li>
+<li>使组合软件功能更加容易</li>
+<li>对软件的性能上没有非常严重的不良影响</li>
+</ul>
+<p>本文主要针对第二点做了更深入的研究。</p>
+<h3 id="本文主要的研究问题"><a href="#本文主要的研究问题" class="headerlink" title="本文主要的研究问题"></a>本文主要的研究问题</h3><ul>
+<li>并发上下文中lambda表达式的突出程度如何，分析的语言在这方面有何不同？ (三种语言c#,c++,java，3000个项目)  </li>
+<li>在并发上下文中，开发人员是更喜欢非捕捉lambda(non-capturing)还是捕捉lambda(capturing)<br>non-capturing:即在并发上下文中lambda表达式没有引入外部变量，更安全。<br><img src="/images/191.png" alt="图片描述"><br>capturing:即在并发上下文中lambda表达式引入了外部变量，不安全。<br><img src="/images/190.png" alt="图片描述">  </li>
+<li>除了并发编程之外，还有哪些其他用例是lambda表达式的典型用例？ </li>
+</ul>
+<h2 id="Experimental-Analysis-of-the-Research-Questions"><a href="#Experimental-Analysis-of-the-Research-Questions" class="headerlink" title="Experimental Analysis of the Research Questions"></a>Experimental Analysis of the Research Questions</h2><h3 id="RQ1"><a href="#RQ1" class="headerlink" title="RQ1"></a>RQ1</h3><p>针对第一个RQ,本文主要做了以下实验：  </p>
+<ul>
+<li>统计了3000个c#（1000）,java（1000）,c++（1000）开源项目(github star ranking)  </li>
+<li>统计了所有项目中包含lamda 表达式的项目的数量<br><img src="/images/192.png" alt="图片描述">  </li>
+<li>统计了所有项目中包含并行上下文项目的数量<br><img src="/images/193.png" alt="图片描述">  </li>
+<li>统计了所有项目中既包含lambda表达式又包含并行上下文项目的数量<br><img src="/images/194.png" alt="图片描述">    </li>
+<li>定义了两个度即强度(Intensity),采用度(Utilization)  <ul>
+<li>intensity of lambda expression usage in concurrent contexts:<br><img src="/images/195.png" alt="图片描述"><br>p:为一个项目<br>numberLambdaInConcContext(p) : 为求出一个项目中在并行上下文中有lambda表达式这种情况的数量的函数<br>numberLambda(p)：为求出一个项目中所有lambda表达式的数量的函数 </li>
+<li>utilization of lambda expressions<br><img src="/images/196.png" alt="图片描述"><br>p:为一个项目<br>numberFilesWithLambdaInConcContext(p)：为求出一个项目在并行上下文中有lambda表达式所在文件数量的函数<br>numberFilesWithConcContext(p):为求出一个项目中存在并行上下文所有文件数量的函数  </li>
+</ul>
+</li>
+<li>针对两个<code>度</code>,利用<code>Kruskal-Wallis test</code>和<code>Dunn’s test</code>来探索三种语言项目的相关性。<br><img src="/images/197.png" alt="图片描述"><br><img src="/images/198.png" alt="图片描述"><br><img src="/images/199.png" alt="图片描述">  </li>
+</ul>
+<p>结论： </p>
+<ul>
+<li>C＃项目比C ++和Java项目在并发上下文中具有明显更高的lambda表达式强度。 </li>
+<li>在所有三种语言中，并发上下文不是lambda表达式的主要用例(应用场景)  </li>
+<li>与其他两种语言的程序员相比，C＃程序员在实现并发上下文时更频繁地应用lambda表达式。   </li>
+<li>除了这些显着差异之外，结果表明大量项目可以在并发上下文中增加lambda表达式的应用。  </li>
+</ul>
+<h3 id="RQ2"><a href="#RQ2" class="headerlink" title="RQ2"></a>RQ2</h3><p>针对第二个RQ,本文主要做了以下实验：  </p>
+<ul>
+<li>还是之前的3000个项目  </li>
+<li>统计了所有项目中 <code>capturing lambda</code> 和<code>non-capturing lambda</code>的数量<br><img src="/images/200.png" alt="图片描述">  </li>
+<li>求出采用度(Utilization) ,利用<code>Kruskal-Wallis test</code>和<code>Dunn’s test</code>来探索三种语言项目的相关性<br><img src="/images/201.png" alt="图片描述">  </li>
+</ul>
+<p>结论：  </p>
+<ul>
+<li>尽管捕获lambda表达式可能会引入额外的副作用，但所有被调查的编程语言的开发人员在并发中比在一般应用程序中更多地应用lambda表达式，与预期相反。  </li>
+</ul>
+<h3 id="RQ3"><a href="#RQ3" class="headerlink" title="RQ3"></a>RQ3</h3><p>针对第三个RQ,本文主要做了以下实验：  </p>
+<ul>
+<li>还是之前的3000个项目  </li>
+<li>根据源代码文件的名字（定性分析，没给具体的方法，自己看的？），将该文件的应用场景分为以下几类：<br><img src="/images/202.png" alt="图片描述">  </li>
+<li>统计了每种语言应用场景的分布情况(文件数量)<br><img src="/images/203.png" alt="图片描述"><br><img src="/images/204.png" alt="图片描述"><br><img src="/images/205.png" alt="图片描述">  </li>
+</ul>
+<p>结论：  </p>
+<ul>
+<li>开发人员倾向于在自动测试中，在算法和用户界面的实现中使用lambda表达式  </li>
+<li>三种语言的应用场景也不尽相同：<br><img src="/images/206.png" alt="图片描述">  </li>
+</ul>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Analyzes-on-the-Adoption-of-Lambda-Expressions"><a href="#Analyzes-on-the-Adoption-of-Lambda-Expressions" class="headerlink" title="Analyzes on the Adoption of Lambda Expressions"></a>Analyzes on the Adoption of Lambda Expressions</h3><p>相关工作里面对我们有用的只有这个感觉，对是否采用lambda表达式进行分析   </p>
+<ul>
+<li><p><code>Mazinanian et al. (2017)</code>等最近对Java中的lambda表达式进行了一项研究。特别是，他们分析了来自GitHub的241个开源项目的历史数据，以找到开发人员最近添加了lambda表达式的项目。然后他们采访了有意义的开发人员，以发现他们插入具体lambda表达式的原因。他们的主要见解是lambda表达式的采用正在增加，并且大多数lambda都是手动插入的。此外，分析表明，由于几个原因，例如缺少异常处理，开发人员不使用标准库提供的许​​多功能接口。此外，在他们的定性研究中确定了采用lambda表达式的几个关键原因。这些包括减少代码大小，避免类实现，包装行为，迁移到Java 8或强制使用lambda表达式的库。除了这些抽象的原因，他们还确定了lambda表达式的一些特定用例，例如，实现了监听器和回调，简化了测试，以及多线程和异常处理。与我们的研究相反，他们只调查了一种编程语言中的lambda表达式的使用，即Java。此外，我们还进行了跨语言分析，可以更深入地了解编程语言之间的差异。这可以帮助语言设计者通过学习其他语言的实现来改进他们当前的lambda表达式设计  </p>
+</li>
+<li><p><code>Uesbeck et al. (2016)</code>等对58名不同经验水平的参与者进行了用户实验。在本实验中，他们被要求通过使用迭代器接口或lambda表达式来解决C++中的编程任务。他们的研究结果表明，有经验的用户更有可能正确应用lambda表达式。 这表明我们必须仔细选择我们分析中使用的项目，因为大量新手开发人员正在处理的项目可能具有更高的错误使用的lambda表达式。  </p>
+</li>
+<li><p><code>Tsantalis et al. (2017)</code>等开发了一个Java重构工具，旨在通过插入lambda表达式来减少代码克隆。 他们表明，他们的工具可以在开源项目中正确地重构57-60％的类型-2（除了标识符名称语法相同）和类型-3（添加或删除语句）克隆。 特别是，他们指出，与生产代码中的克隆相比，驻留在测试代码中的克隆比例更高，可以成功重构（71％对51％）。这些发现揭示了lambda表达式的潜在用例，即克隆代码减少和自动测试。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/27/paper3/">《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 许宜森 的个人博客">许宜森</a></p>
+  <p><span>发布时间:</span>2018年11月27日 - 19:11</p>
+  <p><span>最后更新:</span>2018年11月27日 - 22:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/27/paper3/" title="《DeepLearning Similarities from Different Representations of SourceCode》阅读笔记">http://daixinyuxuyisen.cn/2018/11/27/paper3/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://daixinyuxuyisen.cn/2018/11/27/paper3/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+    </div>
+    
+    
+    <div>
+    
+      <div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读!-------------</div>
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Lambda-expression-Concurrency/" rel="tag">Lambda expression  Concurrency</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/15/experiment17/" rel="next" title="experiment17">
+                <i class="fa fa-chevron-left"></i> experiment17
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzA4My8xMzYxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="许宜森" />
+            
+              <p class="site-author-name" itemprop="name">许宜森</p>
+              <p class="site-description motion-element" itemprop="description">略略略</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xuyisen" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:xys1342266054@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/iss2015302580249" target="_blank" title="码云"><i class="fa fa-fw fa-gg"></i>码云</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/" target="_blank" title="QQ"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation-and-Research-Questions"><span class="nav-number">1.</span> <span class="nav-text">Motivation and Research Questions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前人主要研究的问题"><span class="nav-number">1.1.</span> <span class="nav-text">前人主要研究的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文主要的研究问题"><span class="nav-number">1.2.</span> <span class="nav-text">本文主要的研究问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Analysis-of-the-Research-Questions"><span class="nav-number">2.</span> <span class="nav-text">Experimental Analysis of the Research Questions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RQ1"><span class="nav-number">2.1.</span> <span class="nav-text">RQ1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RQ2"><span class="nav-number">2.2.</span> <span class="nav-text">RQ2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RQ3"><span class="nav-number">2.3.</span> <span class="nav-text">RQ3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Analyzes-on-the-Adoption-of-Lambda-Expressions"><span class="nav-number">3.1.</span> <span class="nav-text">Analyzes on the Adoption of Lambda Expressions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许宜森</span>
+
+  
+
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  我的网站的访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.3.0</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共33.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+    
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
